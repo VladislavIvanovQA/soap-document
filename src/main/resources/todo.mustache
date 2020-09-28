@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>XML</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+            crossorigin="anonymous"></script>
+
+    <script>
+        window.onload = function () {
+            let listCode = document.getElementsByClassName('pre-scrollable');
+            for (let i = 0; i < listCode.length; i++) {
+                let idName = listCode[i].getAttribute('id');
+                document.getElementById(idName).addEventListener("click", function () {
+                    copyToClipboard(document.getElementById(idName));
+                });
+            }
+        };
+        function copyToClipboard(elem) {
+            let targetId = "_hiddenCopyText_";
+            let isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
+            let origSelectionStart, origSelectionEnd, target;
+            if (isInput) {
+                target = elem;
+                origSelectionStart = elem.selectionStart;
+                origSelectionEnd = elem.selectionEnd;
+            } else {
+                target = document.getElementById(targetId);
+                if (!target) {
+                    let target = document.createElement("textarea");
+                    target.style.position = "absolute";
+                    target.style.left = "-9999px";
+                    target.style.top = "0";
+                    target.id = targetId;
+                    document.body.appendChild(target);
+                }
+                target.textContent = elem.textContent;
+            }
+            let currentFocus = document.activeElement;
+            target.focus();
+            target.setSelectionRange(0, target.value.length);
+
+            let succeed;
+            try {
+                succeed = document.execCommand("copy");
+            } catch (e) {
+                succeed = false;
+            }
+            if (currentFocus && typeof currentFocus.focus === "function") {
+                currentFocus.focus();
+            }
+
+            if (isInput) {
+                elem.setSelectionRange(origSelectionStart, origSelectionEnd);
+            } else {
+                target.textContent = "";
+            }
+            return succeed;
+        }
+    </script>
+</head>
+<body class="container">
+{{#entrySet}}
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#{{methodName}}"
+                   role="button" aria-expanded="false" aria-controls="{{methodName}}">
+                    {{methodName}}</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="{{methodName}}" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="Code{{methodName}}">{{request}}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="Code{{methodName}}Response">{{response}}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+{{/entrySet}}
+</body>
+</html>

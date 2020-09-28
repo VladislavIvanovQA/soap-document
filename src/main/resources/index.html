@@ -1,0 +1,2184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>XML</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+            crossorigin="anonymous"></script>
+
+    <script>
+        window.onload = function () {
+            let listCode = document.getElementsByClassName('pre-scrollable');
+            for (let i = 0; i < listCode.length; i++) {
+                let idName = listCode[i].getAttribute('id');
+                document.getElementById(idName).addEventListener("click", function () {
+                    copyToClipboard(document.getElementById(idName));
+                });
+            }
+        };
+        function copyToClipboard(elem) {
+            let targetId = "_hiddenCopyText_";
+            let isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
+            let origSelectionStart, origSelectionEnd, target;
+            if (isInput) {
+                target = elem;
+                origSelectionStart = elem.selectionStart;
+                origSelectionEnd = elem.selectionEnd;
+            } else {
+                target = document.getElementById(targetId);
+                if (!target) {
+                    let target = document.createElement("textarea");
+                    target.style.position = "absolute";
+                    target.style.left = "-9999px";
+                    target.style.top = "0";
+                    target.id = targetId;
+                    document.body.appendChild(target);
+                }
+                target.textContent = elem.textContent;
+            }
+            let currentFocus = document.activeElement;
+            target.focus();
+            target.setSelectionRange(0, target.value.length);
+
+            let succeed;
+            try {
+                succeed = document.execCommand("copy");
+            } catch (e) {
+                succeed = false;
+            }
+            if (currentFocus && typeof currentFocus.focus === "function") {
+                currentFocus.focus();
+            }
+
+            if (isInput) {
+                elem.setSelectionRange(origSelectionStart, origSelectionEnd);
+            } else {
+                target.textContent = "";
+            }
+            return succeed;
+        }
+    </script>
+</head>
+<body class="container">
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetTaxpayerStatusRequest"
+                   role="button" aria-expanded="false" aria-controls="GetTaxpayerStatusRequest">
+                    GetTaxpayerStatusRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetTaxpayerStatusRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetTaxpayerStatusRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;ae8c0183-9f82-47b5-b6f2-6c33d9bb8f57&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetTaxpayerStatusRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;inn&quot; : &quot;Inn1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetTaxpayerStatusRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;ee7da30b-89b8-4a9c-89c5-3abbd3b955f3&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetTaxpayerStatusResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;firstName&quot; : &quot;FirstName1&quot;,&#13;&#10;    &quot;secondName&quot; : &quot;SecondName1&quot;,&#13;&#10;    &quot;patronymic&quot; : &quot;Patronymic1&quot;,&#13;&#10;    &quot;registrationTime&quot; : 1601244699000,&#13;&#10;    &quot;unregistrationTime&quot; : 1601244699000,&#13;&#10;    &quot;unregistrationReason&quot; : &quot;UnregistrationReason1&quot;,&#13;&#10;    &quot;activities&quot; : [ &quot;Activities1&quot;, &quot;Activities2&quot; ],&#13;&#10;    &quot;region&quot; : &quot;Region1&quot;,&#13;&#10;    &quot;phone&quot; : &quot;Phone1&quot;,&#13;&#10;    &quot;email&quot; : &quot;Email1&quot;,&#13;&#10;    &quot;accountNumber&quot; : &quot;AccountNumber1&quot;,&#13;&#10;    &quot;updateTime&quot; : 1601244699000,&#13;&#10;    &quot;registrationCertificateNumber&quot; : &quot;RegistrationCertificateNumber1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetCancelIncomeReasonsListRequest"
+                   role="button" aria-expanded="false" aria-controls="GetCancelIncomeReasonsListRequest">
+                    GetCancelIncomeReasonsListRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetCancelIncomeReasonsListRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetCancelIncomeReasonsListRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;033cc812-bc6a-478a-9fe4-b8fb250e660b&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetCancelIncomeReasonsListRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;requestTime&quot; : 1601244706000&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetCancelIncomeReasonsListRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;0f645649-dabd-43c8-8905-32ea5e8f8d2d&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetCancelIncomeReasonsListResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;codes&quot; : [ {&#13;&#10;      &quot;code&quot; : &quot;Code1&quot;,&#13;&#10;      &quot;description&quot; : &quot;Description1&quot;&#13;&#10;    }, {&#13;&#10;      &quot;code&quot; : &quot;Code2&quot;,&#13;&#10;      &quot;description&quot; : &quot;Description2&quot;&#13;&#10;    } ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetUnregistrationReasonsListRequest"
+                   role="button" aria-expanded="false" aria-controls="GetUnregistrationReasonsListRequest">
+                    GetUnregistrationReasonsListRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetUnregistrationReasonsListRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetUnregistrationReasonsListRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;be721adb-b287-4421-8f35-37fda40bcfed&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetUnregistrationReasonsListRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;requestTime&quot; : 1601244703000&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetUnregistrationReasonsListRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;81b6c0ea-54d7-4253-938a-fa7acb9f0fe7&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetUnregistrationReasonsListResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;codes&quot; : [ {&#13;&#10;      &quot;code&quot; : &quot;Code1&quot;,&#13;&#10;      &quot;description&quot; : &quot;Description1&quot;&#13;&#10;    }, {&#13;&#10;      &quot;code&quot; : &quot;Code2&quot;,&#13;&#10;      &quot;description&quot; : &quot;Description2&quot;&#13;&#10;    }, {&#13;&#10;      &quot;code&quot; : &quot;Code3&quot;,&#13;&#10;      &quot;description&quot; : &quot;Description3&quot;&#13;&#10;    } ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetInnByPersonalInfoRequestV2"
+                   role="button" aria-expanded="false" aria-controls="GetInnByPersonalInfoRequestV2">
+                    GetInnByPersonalInfoRequestV2</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetInnByPersonalInfoRequestV2" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetInnByPersonalInfoRequestV2">{&#13;&#10;  &quot;externalId&quot; : &quot;68403229-69ed-4218-8277-8cb5d1a79b27&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetInnByPersonalInfoRequestV2&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;personalInfoList&quot; : [ {&#13;&#10;      &quot;firstName&quot; : &quot;FirstName1&quot;,&#13;&#10;      &quot;secondName&quot; : &quot;SecondName1&quot;,&#13;&#10;      &quot;patronymic&quot; : &quot;Patronymic1&quot;,&#13;&#10;      &quot;birthday&quot; : 1601240400000,&#13;&#10;      &quot;passportSeries&quot; : &quot;PassportSeries1&quot;,&#13;&#10;      &quot;passportNumber&quot; : &quot;PassportNumber1&quot;&#13;&#10;    }, {&#13;&#10;      &quot;firstName&quot; : &quot;FirstName2&quot;,&#13;&#10;      &quot;secondName&quot; : &quot;SecondName2&quot;,&#13;&#10;      &quot;patronymic&quot; : &quot;Patronymic2&quot;,&#13;&#10;      &quot;birthday&quot; : 1601240400000,&#13;&#10;      &quot;passportSeries&quot; : &quot;PassportSeries2&quot;,&#13;&#10;      &quot;passportNumber&quot; : &quot;PassportNumber2&quot;&#13;&#10;    }, {&#13;&#10;      &quot;firstName&quot; : &quot;FirstName3&quot;,&#13;&#10;      &quot;secondName&quot; : &quot;SecondName3&quot;,&#13;&#10;      &quot;patronymic&quot; : &quot;Patronymic3&quot;,&#13;&#10;      &quot;birthday&quot; : 1601240400000,&#13;&#10;      &quot;passportSeries&quot; : &quot;PassportSeries3&quot;,&#13;&#10;      &quot;passportNumber&quot; : &quot;PassportNumber3&quot;&#13;&#10;    }, {&#13;&#10;      &quot;firstName&quot; : &quot;FirstName4&quot;,&#13;&#10;      &quot;secondName&quot; : &quot;SecondName4&quot;,&#13;&#10;      &quot;patronymic&quot; : &quot;Patronymic4&quot;,&#13;&#10;      &quot;birthday&quot; : 1601240400000,&#13;&#10;      &quot;passportSeries&quot; : &quot;PassportSeries4&quot;,&#13;&#10;      &quot;passportNumber&quot; : &quot;PassportNumber4&quot;&#13;&#10;    } ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetInnByPersonalInfoRequestV2Response">{&#13;&#10;  &quot;externalId&quot; : &quot;58cdea60-3d4a-4734-9a9e-af4aa01c7a00&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetInnByPersonalInfoResponseV2&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;innList&quot; : [ {&#13;&#10;      &quot;inn&quot; : [ &quot;Inn1&quot;, &quot;Inn2&quot; ],&#13;&#10;      &quot;status&quot; : &quot;Status1&quot;&#13;&#10;    }, {&#13;&#10;      &quot;inn&quot; : [ &quot;Inn3&quot;, &quot;Inn4&quot;, &quot;Inn5&quot;, &quot;Inn6&quot; ],&#13;&#10;      &quot;status&quot; : &quot;Status2&quot;&#13;&#10;    }, {&#13;&#10;      &quot;inn&quot; : [ &quot;Inn7&quot;, &quot;Inn8&quot;, &quot;Inn9&quot;, &quot;Inn10&quot; ],&#13;&#10;      &quot;status&quot; : &quot;Status3&quot;&#13;&#10;    } ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetActivitiesListRequest"
+                   role="button" aria-expanded="false" aria-controls="GetActivitiesListRequest">
+                    GetActivitiesListRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetActivitiesListRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetActivitiesListRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;dbb2f513-6146-4057-873d-30e4eb314171&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetActivitiesListRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;requestTime&quot; : 1601244703000&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetActivitiesListRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;64ffa759-c0a2-4179-a0c5-87ff401ee75b&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetActivitiesListResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;activities&quot; : [ {&#13;&#10;      &quot;id&quot; : &quot;Id1&quot;,&#13;&#10;      &quot;name&quot; : &quot;Name1&quot;&#13;&#10;    }, {&#13;&#10;      &quot;id&quot; : &quot;Id2&quot;,&#13;&#10;      &quot;name&quot; : &quot;Name2&quot;&#13;&#10;    }, {&#13;&#10;      &quot;id&quot; : &quot;Id3&quot;,&#13;&#10;      &quot;name&quot; : &quot;Name3&quot;&#13;&#10;    }, {&#13;&#10;      &quot;id&quot; : &quot;Id4&quot;,&#13;&#10;      &quot;name&quot; : &quot;Name4&quot;&#13;&#10;    } ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetIncomeRequestV2"
+                   role="button" aria-expanded="false" aria-controls="GetIncomeRequestV2">
+                    GetIncomeRequestV2</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetIncomeRequestV2" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetIncomeRequestV2">{&#13;&#10;  &quot;externalId&quot; : &quot;f87e90e5-5836-43f0-804a-737bd7bf5c56&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetIncomeRequestV2&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;inn&quot; : &quot;Inn1&quot;,&#13;&#10;    &quot;from&quot; : 1601244702000,&#13;&#10;    &quot;to&quot; : 1601244702000,&#13;&#10;    &quot;limit&quot; : 100,&#13;&#10;    &quot;offset&quot; : 0&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetIncomeRequestV2Response">{&#13;&#10;  &quot;externalId&quot; : &quot;21f48b5c-90b8-4e2b-85b3-7c2ca1dad662&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetIncomeResponseV2&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;hasMore&quot; : false,&#13;&#10;    &quot;receipts&quot; : [ {&#13;&#10;      &quot;link&quot; : &quot;Link1&quot;,&#13;&#10;      &quot;totalAmount&quot; : -37.554,&#13;&#10;      &quot;receiptId&quot; : &quot;ReceiptId1&quot;,&#13;&#10;      &quot;incomeType&quot; : &quot;IncomeType1&quot;,&#13;&#10;      &quot;requestTime&quot; : 1601244702000,&#13;&#10;      &quot;operationTime&quot; : 1601244702000,&#13;&#10;      &quot;taxPeriodId&quot; : &quot;TaxPeriodId1&quot;,&#13;&#10;      &quot;taxToPay&quot; : 840.162,&#13;&#10;      &quot;partnerCode&quot; : &quot;PartnerCode1&quot;,&#13;&#10;      &quot;supplierInn&quot; : &quot;SupplierInn1&quot;,&#13;&#10;      &quot;cancelationTime&quot; : 1601244702000,&#13;&#10;      &quot;services&quot; : [ {&#13;&#10;        &quot;amount&quot; : -143.048,&#13;&#10;        &quot;name&quot; : &quot;Name1&quot;,&#13;&#10;        &quot;quantity&quot; : -9223372036854775808&#13;&#10;      }, {&#13;&#10;        &quot;amount&quot; : -728.192,&#13;&#10;        &quot;name&quot; : &quot;Name2&quot;,&#13;&#10;        &quot;quantity&quot; : -9223372036854775808&#13;&#10;      }, {&#13;&#10;        &quot;amount&quot; : 38.724,&#13;&#10;        &quot;name&quot; : &quot;Name3&quot;,&#13;&#10;        &quot;quantity&quot; : -9223372036854775808&#13;&#10;      }, {&#13;&#10;        &quot;amount&quot; : 317.429,&#13;&#10;        &quot;name&quot; : &quot;Name4&quot;,&#13;&#10;        &quot;quantity&quot; : -9223372036854775808&#13;&#10;      } ]&#13;&#10;    }, {&#13;&#10;      &quot;link&quot; : &quot;Link2&quot;,&#13;&#10;      &quot;totalAmount&quot; : -356.659,&#13;&#10;      &quot;receiptId&quot; : &quot;ReceiptId2&quot;,&#13;&#10;      &quot;incomeType&quot; : &quot;IncomeType2&quot;,&#13;&#10;      &quot;requestTime&quot; : 1601244702000,&#13;&#10;      &quot;operationTime&quot; : 1601244702000,&#13;&#10;      &quot;taxPeriodId&quot; : &quot;TaxPeriodId2&quot;,&#13;&#10;      &quot;taxToPay&quot; : -402.218,&#13;&#10;      &quot;partnerCode&quot; : &quot;PartnerCode2&quot;,&#13;&#10;      &quot;supplierInn&quot; : &quot;SupplierInn2&quot;,&#13;&#10;      &quot;cancelationTime&quot; : 1601244702000,&#13;&#10;      &quot;services&quot; : [ {&#13;&#10;        &quot;amount&quot; : -588.319,&#13;&#10;        &quot;name&quot; : &quot;Name5&quot;,&#13;&#10;        &quot;quantity&quot; : -9223372036854775808&#13;&#10;      }, {&#13;&#10;        &quot;amount&quot; : 563.22,&#13;&#10;        &quot;name&quot; : &quot;Name6&quot;,&#13;&#10;        &quot;quantity&quot; : -9223372036854775808&#13;&#10;      }, {&#13;&#10;        &quot;amount&quot; : -318.182,&#13;&#10;        &quot;name&quot; : &quot;Name7&quot;,&#13;&#10;        &quot;quantity&quot; : -9223372036854775808&#13;&#10;      } ]&#13;&#10;    } ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetIncomeReferenceRequestV2"
+                   role="button" aria-expanded="false" aria-controls="GetIncomeReferenceRequestV2">
+                    GetIncomeReferenceRequestV2</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetIncomeReferenceRequestV2" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetIncomeReferenceRequestV2">{&#13;&#10;  &quot;externalId&quot; : &quot;f5832a86-3e48-42c3-bc79-d291888d7b3e&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetIncomeReferenceRequestV2&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;inn&quot; : &quot;Inn1&quot;,&#13;&#10;    &quot;requestTime&quot; : 1601244704000,&#13;&#10;    &quot;requestYear&quot; : &quot;RequestYear1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetIncomeReferenceRequestV2Response">{&#13;&#10;  &quot;externalId&quot; : &quot;d32c83d6-278d-40e0-b8f1-33c215495dbf&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetIncomeReferenceResponseV2&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;incomeReferencePdf&quot; : {&#13;&#10;      &quot;mimetype&quot; : &quot;mimetype1&quot;,&#13;&#10;      &quot;filename&quot; : &quot;filename1&quot;,&#13;&#10;      &quot;content&quot; : &quot;Y29udGVudDE&#61;&quot;&#13;&#10;    }&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetBindPartnerStatusRequest"
+                   role="button" aria-expanded="false" aria-controls="GetBindPartnerStatusRequest">
+                    GetBindPartnerStatusRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetBindPartnerStatusRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetBindPartnerStatusRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;e1fb3ef4-8c36-42ed-8c19-deb277394c5e&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetBindPartnerStatusRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;id&quot; : &quot;Id1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetBindPartnerStatusRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;50cae3c1-ea41-4212-8005-7fab727d580e&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetBindPartnerStatusResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;result&quot; : &quot;Result1&quot;,&#13;&#10;    &quot;inn&quot; : &quot;Inn1&quot;,&#13;&#10;    &quot;permissions&quot; : [ &quot;Permissions1&quot;, &quot;Permissions2&quot; ],&#13;&#10;    &quot;processingTime&quot; : 1601244700000&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetKeysRequest"
+                   role="button" aria-expanded="false" aria-controls="GetKeysRequest">
+                    GetKeysRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetKeysRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetKeysRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;32a92ade-6f29-41ba-8fea-ece80b063462&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetKeysRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;inn&quot; : [ &quot;Inn1&quot;, &quot;Inn2&quot;, &quot;Inn3&quot; ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetKeysRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;31e2279a-e46c-4adf-a167-fce9f85485be&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetKeysResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;keys&quot; : [ {&#13;&#10;      &quot;inn&quot; : &quot;Inn1&quot;,&#13;&#10;      &quot;keyRecord&quot; : [ {&#13;&#10;        &quot;sequenceNumber&quot; : 1016156039,&#13;&#10;        &quot;expireTime&quot; : 1601244703000,&#13;&#10;        &quot;base64Key&quot; : &quot;Base64Key1&quot;&#13;&#10;      }, {&#13;&#10;        &quot;sequenceNumber&quot; : -9268497,&#13;&#10;        &quot;expireTime&quot; : 1601244703000,&#13;&#10;        &quot;base64Key&quot; : &quot;Base64Key2&quot;&#13;&#10;      } ]&#13;&#10;    }, {&#13;&#10;      &quot;inn&quot; : &quot;Inn2&quot;,&#13;&#10;      &quot;keyRecord&quot; : [ {&#13;&#10;        &quot;sequenceNumber&quot; : 1590081018,&#13;&#10;        &quot;expireTime&quot; : 1601244703000,&#13;&#10;        &quot;base64Key&quot; : &quot;Base64Key3&quot;&#13;&#10;      }, {&#13;&#10;        &quot;sequenceNumber&quot; : 220122377,&#13;&#10;        &quot;expireTime&quot; : 1601244703000,&#13;&#10;        &quot;base64Key&quot; : &quot;Base64Key4&quot;&#13;&#10;      }, {&#13;&#10;        &quot;sequenceNumber&quot; : 742169860,&#13;&#10;        &quot;expireTime&quot; : 1601244703000,&#13;&#10;        &quot;base64Key&quot; : &quot;Base64Key5&quot;&#13;&#10;      }, {&#13;&#10;        &quot;sequenceNumber&quot; : -2023178192,&#13;&#10;        &quot;expireTime&quot; : 1601244703000,&#13;&#10;        &quot;base64Key&quot; : &quot;Base64Key6&quot;&#13;&#10;      } ]&#13;&#10;    }, {&#13;&#10;      &quot;inn&quot; : &quot;Inn3&quot;,&#13;&#10;      &quot;keyRecord&quot; : [ {&#13;&#10;        &quot;sequenceNumber&quot; : -1457395918,&#13;&#10;        &quot;expireTime&quot; : 1601244703000,&#13;&#10;        &quot;base64Key&quot; : &quot;Base64Key7&quot;&#13;&#10;      }, {&#13;&#10;        &quot;sequenceNumber&quot; : 1204440100,&#13;&#10;        &quot;expireTime&quot; : 1601244703000,&#13;&#10;        &quot;base64Key&quot; : &quot;Base64Key8&quot;&#13;&#10;      }, {&#13;&#10;        &quot;sequenceNumber&quot; : -337383769,&#13;&#10;        &quot;expireTime&quot; : 1601244703000,&#13;&#10;        &quot;base64Key&quot; : &quot;Base64Key9&quot;&#13;&#10;      } ]&#13;&#10;    }, {&#13;&#10;      &quot;inn&quot; : &quot;Inn4&quot;,&#13;&#10;      &quot;keyRecord&quot; : [ {&#13;&#10;        &quot;sequenceNumber&quot; : -1008869939,&#13;&#10;        &quot;expireTime&quot; : 1601244703000,&#13;&#10;        &quot;base64Key&quot; : &quot;Base64Key10&quot;&#13;&#10;      }, {&#13;&#10;        &quot;sequenceNumber&quot; : -1249440789,&#13;&#10;        &quot;expireTime&quot; : 1601244703000,&#13;&#10;        &quot;base64Key&quot; : &quot;Base64Key11&quot;&#13;&#10;      }, {&#13;&#10;        &quot;sequenceNumber&quot; : 488448939,&#13;&#10;        &quot;expireTime&quot; : 1601244703000,&#13;&#10;        &quot;base64Key&quot; : &quot;Base64Key12&quot;&#13;&#10;      } ]&#13;&#10;    } ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetTaxpayerUnregistrationReasonsListRequest"
+                   role="button" aria-expanded="false" aria-controls="GetTaxpayerUnregistrationReasonsListRequest">
+                    GetTaxpayerUnregistrationReasonsListRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetTaxpayerUnregistrationReasonsListRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetTaxpayerUnregistrationReasonsListRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;c167ba43-81ce-458a-b23d-693a6cc82e75&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetTaxpayerUnregistrationReasonsListRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;requestTime&quot; : 1601244706000&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetTaxpayerUnregistrationReasonsListRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;9fe3a23e-b838-49f7-9285-208c0b18c539&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetTaxpayerUnregistrationReasonsListResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;codes&quot; : [ {&#13;&#10;      &quot;code&quot; : &quot;Code1&quot;,&#13;&#10;      &quot;description&quot; : &quot;Description1&quot;&#13;&#10;    }, {&#13;&#10;      &quot;code&quot; : &quot;Code2&quot;,&#13;&#10;      &quot;description&quot; : &quot;Description2&quot;&#13;&#10;    } ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetActivitiesListRequestV2"
+                   role="button" aria-expanded="false" aria-controls="GetActivitiesListRequestV2">
+                    GetActivitiesListRequestV2</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetActivitiesListRequestV2" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetActivitiesListRequestV2">{&#13;&#10;  &quot;externalId&quot; : &quot;e9f6f46b-4970-4220-a31c-453d78b45f56&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetActivitiesListRequestV2&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;requestTime&quot; : 1601244703000&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetActivitiesListRequestV2Response">{&#13;&#10;  &quot;externalId&quot; : &quot;e792b8e4-c58a-4e80-8614-40a6a6e32710&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetActivitiesListResponseV2&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;activities&quot; : [ {&#13;&#10;      &quot;id&quot; : -627808986,&#13;&#10;      &quot;parentId&quot; : -1719158618,&#13;&#10;      &quot;name&quot; : &quot;Name1&quot;,&#13;&#10;      &quot;isActive&quot; : false&#13;&#10;    }, {&#13;&#10;      &quot;id&quot; : -185262961,&#13;&#10;      &quot;parentId&quot; : 1027180348,&#13;&#10;      &quot;name&quot; : &quot;Name2&quot;,&#13;&#10;      &quot;isActive&quot; : true&#13;&#10;    } ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#PostIncomeRequest"
+                   role="button" aria-expanded="false" aria-controls="PostIncomeRequest">
+                    PostIncomeRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="PostIncomeRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostIncomeRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;349cefb1-dc85-4a1a-b85d-5d55a0ec1f27&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostIncomeRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;inn&quot; : &quot;Inn1&quot;,&#13;&#10;    &quot;receiptId&quot; : &quot;ReceiptId1&quot;,&#13;&#10;    &quot;requestTime&quot; : 1601244701000,&#13;&#10;    &quot;operationTime&quot; : 1601244701000,&#13;&#10;    &quot;incomeType&quot; : &quot;IncomeType1&quot;,&#13;&#10;    &quot;customerInn&quot; : &quot;CustomerInn1&quot;,&#13;&#10;    &quot;customerOrganization&quot; : &quot;CustomerOrganization1&quot;,&#13;&#10;    &quot;services&quot; : {&#13;&#10;      &quot;amount&quot; : 732.792,&#13;&#10;      &quot;name&quot; : &quot;Name1&quot;,&#13;&#10;      &quot;quantity&quot; : -9223372036854775808&#13;&#10;    },&#13;&#10;    &quot;totalAmount&quot; : 872.715,&#13;&#10;    &quot;incomeHashCode&quot; : &quot;IncomeHashCode1&quot;,&#13;&#10;    &quot;link&quot; : &quot;Link1&quot;,&#13;&#10;    &quot;geoInfo&quot; : {&#13;&#10;      &quot;latitude&quot; : 707.6423151126869,&#13;&#10;      &quot;longitude&quot; : 891.6414531079597&#13;&#10;    },&#13;&#10;    &quot;operationUniqueId&quot; : &quot;OperationUniqueId1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostIncomeRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;c318cae9-a689-408d-a2a9-12207c60c8ce&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostIncomeResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;receiptId&quot; : &quot;ReceiptId1&quot;,&#13;&#10;    &quot;link&quot; : &quot;Link1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetIncomeForPeriodRequest"
+                   role="button" aria-expanded="false" aria-controls="GetIncomeForPeriodRequest">
+                    GetIncomeForPeriodRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetIncomeForPeriodRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetIncomeForPeriodRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;f24756fc-3c08-41b6-bff4-a7fd295b42d1&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetIncomeForPeriodRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;inn&quot; : &quot;Inn1&quot;,&#13;&#10;    &quot;taxPeriodId&quot; : &quot;TaxPeriodId1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetIncomeForPeriodRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;055bfbe4-8a15-4a91-8721-d29949b4f10d&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetIncomeForPeriodResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;totalAmount&quot; : -848.101,&#13;&#10;    &quot;canceledTotalAmount&quot; : -566.861,&#13;&#10;    &quot;tax&quot; : -502.645&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#PostBindPartnerWithPhoneRequest"
+                   role="button" aria-expanded="false" aria-controls="PostBindPartnerWithPhoneRequest">
+                    PostBindPartnerWithPhoneRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="PostBindPartnerWithPhoneRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostBindPartnerWithPhoneRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;cffdfd7d-6dae-46cf-916b-578382d1b705&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostBindPartnerWithPhoneRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;phone&quot; : &quot;Phone1&quot;,&#13;&#10;    &quot;permissions&quot; : [ &quot;Permissions1&quot;, &quot;Permissions2&quot;, &quot;Permissions3&quot; ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostBindPartnerWithPhoneRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;14c5b0bd-8f0b-44b1-86fe-404a743f3b60&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostBindPartnerWithPhoneResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;id&quot; : &quot;Id1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#PostUnregistrationRequestV2"
+                   role="button" aria-expanded="false" aria-controls="PostUnregistrationRequestV2">
+                    PostUnregistrationRequestV2</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="PostUnregistrationRequestV2" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostUnregistrationRequestV2">{&#13;&#10;  &quot;externalId&quot; : &quot;e4ab4d42-0b44-4e0f-83f6-a77c5ec8e236&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostUnregistrationRequestV2&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;inn&quot; : &quot;Inn1&quot;,&#13;&#10;    &quot;reasonCode&quot; : &quot;ReasonCode1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostUnregistrationRequestV2Response">{&#13;&#10;  &quot;externalId&quot; : &quot;ae839056-45cb-4509-98c5-ef6c59fd91a7&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostUnregistrationResponseV2&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;id&quot; : &quot;Id1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetTaxpayerAccountStatusRequest"
+                   role="button" aria-expanded="false" aria-controls="GetTaxpayerAccountStatusRequest">
+                    GetTaxpayerAccountStatusRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetTaxpayerAccountStatusRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetTaxpayerAccountStatusRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;59059615-baba-48ff-97d2-93440bab998e&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetTaxpayerAccountStatusRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;inn&quot; : &quot;Inn1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetTaxpayerAccountStatusRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;1f86a1f0-2d28-4ec3-9c6d-2addb68c66a8&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetTaxpayerAccountStatusResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;bonusAmount&quot; : -111.888,&#13;&#10;    &quot;unpaidAmount&quot; : -137.79,&#13;&#10;    &quot;debtAmount&quot; : 62.971&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetChangeInnHistoryRequest"
+                   role="button" aria-expanded="false" aria-controls="GetChangeInnHistoryRequest">
+                    GetChangeInnHistoryRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetChangeInnHistoryRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetChangeInnHistoryRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;18bf315a-4aa1-4bf7-aec0-a6df3d43b890&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetChangeInnHistoryRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;offset&quot; : -9223372036854775808,&#13;&#10;    &quot;limit&quot; : 100&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetChangeInnHistoryRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;66642e9a-c30d-4bca-b4d2-3233025a5e97&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetChangeInnHistoryResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;items&quot; : [ {&#13;&#10;      &quot;offset&quot; : -9223372036854775808,&#13;&#10;      &quot;previousInn&quot; : &quot;PreviousInn1&quot;,&#13;&#10;      &quot;inn&quot; : &quot;Inn1&quot;,&#13;&#10;      &quot;from&quot; : 1601244704000,&#13;&#10;      &quot;to&quot; : 1601244704000&#13;&#10;    }, {&#13;&#10;      &quot;offset&quot; : -9223372036854775808,&#13;&#10;      &quot;previousInn&quot; : &quot;PreviousInn2&quot;,&#13;&#10;      &quot;inn&quot; : &quot;Inn2&quot;,&#13;&#10;      &quot;from&quot; : 1601244704000,&#13;&#10;      &quot;to&quot; : 1601244704000&#13;&#10;    }, {&#13;&#10;      &quot;offset&quot; : -9223372036854775808,&#13;&#10;      &quot;previousInn&quot; : &quot;PreviousInn3&quot;,&#13;&#10;      &quot;inn&quot; : &quot;Inn3&quot;,&#13;&#10;      &quot;from&quot; : 1601244704000,&#13;&#10;      &quot;to&quot; : 1601244704000&#13;&#10;    } ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#PostUnbindPartnerRequest"
+                   role="button" aria-expanded="false" aria-controls="PostUnbindPartnerRequest">
+                    PostUnbindPartnerRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="PostUnbindPartnerRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostUnbindPartnerRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;8ee37e2f-4948-4fba-a036-a03dea1b4094&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostUnbindPartnerRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;inn&quot; : &quot;Inn1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostUnbindPartnerRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;248c3873-6a1b-4a09-b08b-c7ad33db9ffb&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostUnbindPartnerResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;unregistrationTime&quot; : 1601244701000&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetRegionsListRequest"
+                   role="button" aria-expanded="false" aria-controls="GetRegionsListRequest">
+                    GetRegionsListRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetRegionsListRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetRegionsListRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;3e7440b6-596d-4f2f-a9fa-62d868821777&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetRegionsListRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;requestTime&quot; : 1601244703000&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetRegionsListRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;0405bca7-2999-4097-89ad-ba43774a6431&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetRegionsListResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;regions&quot; : [ {&#13;&#10;      &quot;oktmo&quot; : &quot;Oktmo1&quot;,&#13;&#10;      &quot;name&quot; : &quot;Name1&quot;&#13;&#10;    }, {&#13;&#10;      &quot;oktmo&quot; : &quot;Oktmo2&quot;,&#13;&#10;      &quot;name&quot; : &quot;Name2&quot;&#13;&#10;    }, {&#13;&#10;      &quot;oktmo&quot; : &quot;Oktmo3&quot;,&#13;&#10;      &quot;name&quot; : &quot;Name3&quot;&#13;&#10;    } ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#PostNotificationsArchAllRequest"
+                   role="button" aria-expanded="false" aria-controls="PostNotificationsArchAllRequest">
+                    PostNotificationsArchAllRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="PostNotificationsArchAllRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostNotificationsArchAllRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;9f6cfb40-ad1b-4aea-9f6d-e6c52d80bace&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostNotificationsArchAllRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;inn&quot; : [ &quot;inn1&quot;, &quot;inn2&quot; ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostNotificationsArchAllRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;6dd8bb7e-d42b-453f-9dbf-b49c3a125d7a&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostNotificationsArchAllResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;status&quot; : &quot;status1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetTaxpayerRestrictionsRequest"
+                   role="button" aria-expanded="false" aria-controls="GetTaxpayerRestrictionsRequest">
+                    GetTaxpayerRestrictionsRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetTaxpayerRestrictionsRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetTaxpayerRestrictionsRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;57782e79-d597-4c1e-9199-62b053cced1b&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetTaxpayerRestrictionsRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;inn&quot; : &quot;Inn1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetTaxpayerRestrictionsRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;0183be4a-3c1d-44a1-83d9-fd6af540d3ff&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetTaxpayerRestrictionsResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;requestResult&quot; : &quot;DENY&quot;,&#13;&#10;    &quot;rejectionCode&quot; : &quot;RejectionCode1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetInnByPersonalInfoRequestV3"
+                   role="button" aria-expanded="false" aria-controls="GetInnByPersonalInfoRequestV3">
+                    GetInnByPersonalInfoRequestV3</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetInnByPersonalInfoRequestV3" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetInnByPersonalInfoRequestV3">{&#13;&#10;  &quot;externalId&quot; : &quot;6fc24838-f26f-46f8-96ef-76d74d1e5b85&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetInnByPersonalInfoRequestV3&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;personalInfoList&quot; : [ {&#13;&#10;      &quot;firstName&quot; : &quot;FirstName1&quot;,&#13;&#10;      &quot;secondName&quot; : &quot;SecondName1&quot;,&#13;&#10;      &quot;patronymic&quot; : &quot;Patronymic1&quot;,&#13;&#10;      &quot;birthday&quot; : 1601240400000,&#13;&#10;      &quot;documentSpdul&quot; : &quot;DocumentSpdul1&quot;,&#13;&#10;      &quot;documentSeries&quot; : &quot;DocumentSeries1&quot;,&#13;&#10;      &quot;documentNumber&quot; : &quot;DocumentNumber1&quot;&#13;&#10;    }, {&#13;&#10;      &quot;firstName&quot; : &quot;FirstName2&quot;,&#13;&#10;      &quot;secondName&quot; : &quot;SecondName2&quot;,&#13;&#10;      &quot;patronymic&quot; : &quot;Patronymic2&quot;,&#13;&#10;      &quot;birthday&quot; : 1601240400000,&#13;&#10;      &quot;documentSpdul&quot; : &quot;DocumentSpdul2&quot;,&#13;&#10;      &quot;documentSeries&quot; : &quot;DocumentSeries2&quot;,&#13;&#10;      &quot;documentNumber&quot; : &quot;DocumentNumber2&quot;&#13;&#10;    } ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetInnByPersonalInfoRequestV3Response">{&#13;&#10;  &quot;externalId&quot; : &quot;c44be262-156b-44fd-b775-6d23dd6c837b&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetInnByPersonalInfoResponseV3&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;innList&quot; : [ {&#13;&#10;      &quot;inn&quot; : [ &quot;Inn1&quot;, &quot;Inn2&quot; ],&#13;&#10;      &quot;status&quot; : &quot;Status1&quot;&#13;&#10;    }, {&#13;&#10;      &quot;inn&quot; : [ &quot;Inn3&quot;, &quot;Inn4&quot; ],&#13;&#10;      &quot;status&quot; : &quot;Status2&quot;&#13;&#10;    } ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#PostNotificationsDeliveredRequest"
+                   role="button" aria-expanded="false" aria-controls="PostNotificationsDeliveredRequest">
+                    PostNotificationsDeliveredRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="PostNotificationsDeliveredRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostNotificationsDeliveredRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;9a2c9fd8-00ff-4e11-8ece-1ac9ac50dfa2&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostNotificationsDeliveredRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;notificationList&quot; : [ {&#13;&#10;      &quot;inn&quot; : &quot;inn1&quot;,&#13;&#10;      &quot;messageId&quot; : [ &quot;messageId1&quot;, &quot;messageId2&quot;, &quot;messageId3&quot; ]&#13;&#10;    }, {&#13;&#10;      &quot;inn&quot; : &quot;inn2&quot;,&#13;&#10;      &quot;messageId&quot; : [ &quot;messageId4&quot;, &quot;messageId5&quot;, &quot;messageId6&quot;, &quot;messageId7&quot; ]&#13;&#10;    } ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostNotificationsDeliveredRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;02b4e029-1829-4c80-b956-1957e9c467d1&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostNotificationsDeliveredResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;status&quot; : &quot;status1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#PostUnregistrationRequest"
+                   role="button" aria-expanded="false" aria-controls="PostUnregistrationRequest">
+                    PostUnregistrationRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="PostUnregistrationRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostUnregistrationRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;5e0c165c-f57c-43e1-bc81-ae5872f8f4f5&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostUnregistrationRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;inn&quot; : &quot;Inn1&quot;,&#13;&#10;    &quot;code&quot; : &quot;Code1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostUnregistrationRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;1b770adf-e00d-42be-adf8-7c8f0e5e95f4&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostUnregistrationResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;id&quot; : &quot;Id1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetIncomeRequest"
+                   role="button" aria-expanded="false" aria-controls="GetIncomeRequest">
+                    GetIncomeRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetIncomeRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetIncomeRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;cbd9b275-9520-41cc-af1f-5f7c7928a28e&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetIncomeRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;inn&quot; : &quot;Inn1&quot;,&#13;&#10;    &quot;from&quot; : 1601244702000,&#13;&#10;    &quot;to&quot; : 1601244702000,&#13;&#10;    &quot;limit&quot; : 100,&#13;&#10;    &quot;offset&quot; : 0&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetIncomeRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;429bfef5-5086-4a3c-8ec0-851bf869678d&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetIncomeResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;hasMore&quot; : true,&#13;&#10;    &quot;receipts&quot; : [ {&#13;&#10;      &quot;link&quot; : &quot;Link1&quot;,&#13;&#10;      &quot;totalAmount&quot; : -817.69,&#13;&#10;      &quot;receiptId&quot; : &quot;ReceiptId1&quot;,&#13;&#10;      &quot;requestTime&quot; : 1601244702000,&#13;&#10;      &quot;operationTime&quot; : 1601244702000,&#13;&#10;      &quot;partnerCode&quot; : &quot;PartnerCode1&quot;,&#13;&#10;      &quot;cancelationTime&quot; : 1601244702000,&#13;&#10;      &quot;services&quot; : {&#13;&#10;        &quot;amount&quot; : 918.53,&#13;&#10;        &quot;name&quot; : &quot;Name1&quot;,&#13;&#10;        &quot;quantity&quot; : -9223372036854775808&#13;&#10;      }&#13;&#10;    }, {&#13;&#10;      &quot;link&quot; : &quot;Link2&quot;,&#13;&#10;      &quot;totalAmount&quot; : -433.066,&#13;&#10;      &quot;receiptId&quot; : &quot;ReceiptId2&quot;,&#13;&#10;      &quot;requestTime&quot; : 1601244702000,&#13;&#10;      &quot;operationTime&quot; : 1601244702000,&#13;&#10;      &quot;partnerCode&quot; : &quot;PartnerCode2&quot;,&#13;&#10;      &quot;cancelationTime&quot; : 1601244702000,&#13;&#10;      &quot;services&quot; : {&#13;&#10;        &quot;amount&quot; : -838.759,&#13;&#10;        &quot;name&quot; : &quot;Name2&quot;,&#13;&#10;        &quot;quantity&quot; : -9223372036854775808&#13;&#10;      }&#13;&#10;    }, {&#13;&#10;      &quot;link&quot; : &quot;Link3&quot;,&#13;&#10;      &quot;totalAmount&quot; : -258.415,&#13;&#10;      &quot;receiptId&quot; : &quot;ReceiptId3&quot;,&#13;&#10;      &quot;requestTime&quot; : 1601244702000,&#13;&#10;      &quot;operationTime&quot; : 1601244702000,&#13;&#10;      &quot;partnerCode&quot; : &quot;PartnerCode3&quot;,&#13;&#10;      &quot;cancelationTime&quot; : 1601244702000,&#13;&#10;      &quot;services&quot; : {&#13;&#10;        &quot;amount&quot; : -849.304,&#13;&#10;        &quot;name&quot; : &quot;Name3&quot;,&#13;&#10;        &quot;quantity&quot; : -9223372036854775808&#13;&#10;      }&#13;&#10;    } ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetNotificationsRequest"
+                   role="button" aria-expanded="false" aria-controls="GetNotificationsRequest">
+                    GetNotificationsRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetNotificationsRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetNotificationsRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;3fea1c7f-3d93-427e-9d6e-111f491eb2dc&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetNotificationsRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;notificationsRequest&quot; : [ {&#13;&#10;      &quot;inn&quot; : &quot;inn1&quot;,&#13;&#10;      &quot;getAcknowleged&quot; : true,&#13;&#10;      &quot;getArchived&quot; : false&#13;&#10;    }, {&#13;&#10;      &quot;inn&quot; : &quot;inn2&quot;,&#13;&#10;      &quot;getAcknowleged&quot; : true,&#13;&#10;      &quot;getArchived&quot; : true&#13;&#10;    }, {&#13;&#10;      &quot;inn&quot; : &quot;inn3&quot;,&#13;&#10;      &quot;getAcknowleged&quot; : false,&#13;&#10;      &quot;getArchived&quot; : false&#13;&#10;    } ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetNotificationsRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;cdee94d7-b4b3-4fd8-ae8a-8c6d30d38180&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetNotificationsResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;notificationsResponse&quot; : [ {&#13;&#10;      &quot;inn&quot; : &quot;inn1&quot;,&#13;&#10;      &quot;notif&quot; : [ {&#13;&#10;        &quot;id&quot; : &quot;id1&quot;,&#13;&#10;        &quot;title&quot; : &quot;title1&quot;,&#13;&#10;        &quot;message&quot; : &quot;message1&quot;,&#13;&#10;        &quot;status&quot; : &quot;status1&quot;,&#13;&#10;        &quot;createdAt&quot; : 1601244704000,&#13;&#10;        &quot;updatedAt&quot; : 1601244704000,&#13;&#10;        &quot;partnerId&quot; : &quot;partnerId1&quot;,&#13;&#10;        &quot;applicationId&quot; : &quot;applicationId1&quot;&#13;&#10;      }, {&#13;&#10;        &quot;id&quot; : &quot;id2&quot;,&#13;&#10;        &quot;title&quot; : &quot;title2&quot;,&#13;&#10;        &quot;message&quot; : &quot;message2&quot;,&#13;&#10;        &quot;status&quot; : &quot;status2&quot;,&#13;&#10;        &quot;createdAt&quot; : 1601244704000,&#13;&#10;        &quot;updatedAt&quot; : 1601244704000,&#13;&#10;        &quot;partnerId&quot; : &quot;partnerId2&quot;,&#13;&#10;        &quot;applicationId&quot; : &quot;applicationId2&quot;&#13;&#10;      }, {&#13;&#10;        &quot;id&quot; : &quot;id3&quot;,&#13;&#10;        &quot;title&quot; : &quot;title3&quot;,&#13;&#10;        &quot;message&quot; : &quot;message3&quot;,&#13;&#10;        &quot;status&quot; : &quot;status3&quot;,&#13;&#10;        &quot;createdAt&quot; : 1601244704000,&#13;&#10;        &quot;updatedAt&quot; : 1601244704000,&#13;&#10;        &quot;partnerId&quot; : &quot;partnerId3&quot;,&#13;&#10;        &quot;applicationId&quot; : &quot;applicationId3&quot;&#13;&#10;      } ]&#13;&#10;    }, {&#13;&#10;      &quot;inn&quot; : &quot;inn2&quot;,&#13;&#10;      &quot;notif&quot; : [ {&#13;&#10;        &quot;id&quot; : &quot;id4&quot;,&#13;&#10;        &quot;title&quot; : &quot;title4&quot;,&#13;&#10;        &quot;message&quot; : &quot;message4&quot;,&#13;&#10;        &quot;status&quot; : &quot;status4&quot;,&#13;&#10;        &quot;createdAt&quot; : 1601244704000,&#13;&#10;        &quot;updatedAt&quot; : 1601244704000,&#13;&#10;        &quot;partnerId&quot; : &quot;partnerId4&quot;,&#13;&#10;        &quot;applicationId&quot; : &quot;applicationId4&quot;&#13;&#10;      }, {&#13;&#10;        &quot;id&quot; : &quot;id5&quot;,&#13;&#10;        &quot;title&quot; : &quot;title5&quot;,&#13;&#10;        &quot;message&quot; : &quot;message5&quot;,&#13;&#10;        &quot;status&quot; : &quot;status5&quot;,&#13;&#10;        &quot;createdAt&quot; : 1601244704000,&#13;&#10;        &quot;updatedAt&quot; : 1601244704000,&#13;&#10;        &quot;partnerId&quot; : &quot;partnerId5&quot;,&#13;&#10;        &quot;applicationId&quot; : &quot;applicationId5&quot;&#13;&#10;      } ]&#13;&#10;    } ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetNewPermissionsChangeRequest"
+                   role="button" aria-expanded="false" aria-controls="GetNewPermissionsChangeRequest">
+                    GetNewPermissionsChangeRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetNewPermissionsChangeRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetNewPermissionsChangeRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;61e86737-1494-4785-8a57-15add8e308f6&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetNewPermissionsChangeRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;inn&quot; : [ &quot;inn1&quot;, &quot;inn2&quot;, &quot;inn3&quot; ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetNewPermissionsChangeRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;626ef4fc-6717-4e50-aea6-9c79f6b42727&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetNewPermissionsChangeResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;taxpayers&quot; : [ {&#13;&#10;      &quot;inn&quot; : &quot;Inn1&quot;,&#13;&#10;      &quot;requestId&quot; : &quot;requestId1&quot;,&#13;&#10;      &quot;requestPartnerId&quot; : &quot;requestPartnerId1&quot;,&#13;&#10;      &quot;partnerName&quot; : &quot;PartnerName1&quot;,&#13;&#10;      &quot;permissionsList&quot; : [ &quot;PermissionsList1&quot;, &quot;PermissionsList2&quot;, &quot;PermissionsList3&quot;, &quot;PermissionsList4&quot; ],&#13;&#10;      &quot;requestTime&quot; : 1601244705000&#13;&#10;    }, {&#13;&#10;      &quot;inn&quot; : &quot;Inn2&quot;,&#13;&#10;      &quot;requestId&quot; : &quot;requestId2&quot;,&#13;&#10;      &quot;requestPartnerId&quot; : &quot;requestPartnerId2&quot;,&#13;&#10;      &quot;partnerName&quot; : &quot;PartnerName2&quot;,&#13;&#10;      &quot;permissionsList&quot; : [ &quot;PermissionsList5&quot;, &quot;PermissionsList6&quot;, &quot;PermissionsList7&quot;, &quot;PermissionsList8&quot; ],&#13;&#10;      &quot;requestTime&quot; : 1601244705000&#13;&#10;    } ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetRejectionReasonsListRequest"
+                   role="button" aria-expanded="false" aria-controls="GetRejectionReasonsListRequest">
+                    GetRejectionReasonsListRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetRejectionReasonsListRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetRejectionReasonsListRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;60156f7e-20ea-44d1-8a12-d9dc83667406&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetRejectionReasonsListRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;requestTime&quot; : 1601244703000&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetRejectionReasonsListRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;71e0b8b9-4b56-4919-a146-0a3791176ba4&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetRejectionReasonsListResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;codes&quot; : [ {&#13;&#10;      &quot;code&quot; : &quot;Code1&quot;,&#13;&#10;      &quot;description&quot; : &quot;Description1&quot;&#13;&#10;    }, {&#13;&#10;      &quot;code&quot; : &quot;Code2&quot;,&#13;&#10;      &quot;description&quot; : &quot;Description2&quot;&#13;&#10;    }, {&#13;&#10;      &quot;code&quot; : &quot;Code3&quot;,&#13;&#10;      &quot;description&quot; : &quot;Description3&quot;&#13;&#10;    } ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetInnByPersonalInfoRequest"
+                   role="button" aria-expanded="false" aria-controls="GetInnByPersonalInfoRequest">
+                    GetInnByPersonalInfoRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetInnByPersonalInfoRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetInnByPersonalInfoRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;577efaf6-c743-428e-aff4-362bf8e16b0c&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetInnByPersonalInfoRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;firstName&quot; : &quot;FirstName1&quot;,&#13;&#10;    &quot;secondName&quot; : &quot;SecondName1&quot;,&#13;&#10;    &quot;patronymic&quot; : &quot;Patronymic1&quot;,&#13;&#10;    &quot;birthday&quot; : 1601240400000,&#13;&#10;    &quot;passportSeries&quot; : &quot;PassportSeries1&quot;,&#13;&#10;    &quot;passportNumber&quot; : &quot;PassportNumber1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetInnByPersonalInfoRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;c2150996-ef44-4c02-b4ec-4be891333d1d&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetInnByPersonalInfoResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;inn&quot; : [ &quot;Inn1&quot;, &quot;Inn2&quot;, &quot;Inn3&quot; ],&#13;&#10;    &quot;status&quot; : &quot;Status1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#PostCancelReceiptRequest"
+                   role="button" aria-expanded="false" aria-controls="PostCancelReceiptRequest">
+                    PostCancelReceiptRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="PostCancelReceiptRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostCancelReceiptRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;86346c2a-a7a8-4665-b1d7-6890d7cc12d8&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostCancelReceiptRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;inn&quot; : &quot;Inn1&quot;,&#13;&#10;    &quot;receiptId&quot; : &quot;ReceiptId1&quot;,&#13;&#10;    &quot;message&quot; : &quot;Message1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostCancelReceiptRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;ef1ebffe-b7c3-4b8a-af9e-bad20b337c19&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostCancelReceiptResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;requestResult&quot; : &quot;RequestResult1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#PostNotificationsArchRequest"
+                   role="button" aria-expanded="false" aria-controls="PostNotificationsArchRequest">
+                    PostNotificationsArchRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="PostNotificationsArchRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostNotificationsArchRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;55d87bb6-e415-4ab6-9aaf-2f1372aa1b8a&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostNotificationsArchRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;notificationList&quot; : [ {&#13;&#10;      &quot;inn&quot; : &quot;inn1&quot;,&#13;&#10;      &quot;messageId&quot; : [ &quot;messageId1&quot;, &quot;messageId2&quot;, &quot;messageId3&quot; ]&#13;&#10;    }, {&#13;&#10;      &quot;inn&quot; : &quot;inn2&quot;,&#13;&#10;      &quot;messageId&quot; : [ &quot;messageId4&quot;, &quot;messageId5&quot;, &quot;messageId6&quot;, &quot;messageId7&quot; ]&#13;&#10;    }, {&#13;&#10;      &quot;inn&quot; : &quot;inn3&quot;,&#13;&#10;      &quot;messageId&quot; : [ &quot;messageId8&quot;, &quot;messageId9&quot;, &quot;messageId10&quot; ]&#13;&#10;    }, {&#13;&#10;      &quot;inn&quot; : &quot;inn4&quot;,&#13;&#10;      &quot;messageId&quot; : [ &quot;messageId11&quot;, &quot;messageId12&quot; ]&#13;&#10;    } ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostNotificationsArchRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;53edd3ca-5b85-4a7c-999e-89421b6d96ce&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostNotificationsArchResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;status&quot; : &quot;status1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#PostPlatformRegistrationRequest"
+                   role="button" aria-expanded="false" aria-controls="PostPlatformRegistrationRequest">
+                    PostPlatformRegistrationRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="PostPlatformRegistrationRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostPlatformRegistrationRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;8e03f9e8-d19d-4c3f-898b-d5fdc3d0f4c7&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostPlatformRegistrationRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;partnerName&quot; : &quot;PartnerName1&quot;,&#13;&#10;    &quot;partnerType&quot; : &quot;PARTNER&quot;,&#13;&#10;    &quot;partnerDescription&quot; : &quot;PartnerDescription1&quot;,&#13;&#10;    &quot;partnerConnectable&quot; : &quot;PartnerConnectable1&quot;,&#13;&#10;    &quot;partnerAvailableForBind&quot; : false,&#13;&#10;    &quot;transitionLink&quot; : &quot;TransitionLink1&quot;,&#13;&#10;    &quot;partnersText&quot; : &quot;PartnersText1&quot;,&#13;&#10;    &quot;partnerImage&quot; : &quot;UGFydG5lckltYWdlMQ&#61;&#61;&quot;,&#13;&#10;    &quot;inn&quot; : &quot;Inn1&quot;,&#13;&#10;    &quot;phone&quot; : &quot;Phone1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostPlatformRegistrationRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;c5c2fb33-9c8f-45a0-8ee0-b33fd89f908d&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostPlatformRegistrationResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;partnerID&quot; : &quot;PartnerID1&quot;,&#13;&#10;    &quot;registrationDate&quot; : 1601244704000&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetPaymentDocumentsRequest"
+                   role="button" aria-expanded="false" aria-controls="GetPaymentDocumentsRequest">
+                    GetPaymentDocumentsRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetPaymentDocumentsRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetPaymentDocumentsRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;343e6e49-5824-4c99-968b-1f94dc805c8c&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetPaymentDocumentsRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;innList&quot; : [ &quot;InnList1&quot;, &quot;InnList2&quot;, &quot;InnList3&quot; ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetPaymentDocumentsRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;518de6ee-3c11-4366-ab1f-d76c18a9e3ad&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetPaymentDocumentsResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;paymentDocumentsList&quot; : [ {&#13;&#10;      &quot;inn&quot; : &quot;Inn1&quot;,&#13;&#10;      &quot;documentList&quot; : [ {&#13;&#10;        &quot;type&quot; : &quot;Type1&quot;,&#13;&#10;        &quot;documentIndex&quot; : &quot;DocumentIndex1&quot;,&#13;&#10;        &quot;fullName&quot; : &quot;FullName1&quot;,&#13;&#10;        &quot;address&quot; : &quot;Address1&quot;,&#13;&#10;        &quot;inn&quot; : &quot;Inn2&quot;,&#13;&#10;        &quot;amount&quot; : -709.72,&#13;&#10;        &quot;recipientBankName&quot; : &quot;RecipientBankName1&quot;,&#13;&#10;        &quot;recipientBankBik&quot; : &quot;RecipientBankBik1&quot;,&#13;&#10;        &quot;recipientBankAccountNumber&quot; : &quot;RecipientBankAccountNumber1&quot;,&#13;&#10;        &quot;recipient&quot; : &quot;Recipient1&quot;,&#13;&#10;        &quot;recipientAccountNumber&quot; : &quot;RecipientAccountNumber1&quot;,&#13;&#10;        &quot;recipientInn&quot; : &quot;RecipientInn1&quot;,&#13;&#10;        &quot;recipientKpp&quot; : &quot;RecipientKpp1&quot;,&#13;&#10;        &quot;kbk&quot; : &quot;Kbk1&quot;,&#13;&#10;        &quot;oktmo&quot; : &quot;Oktmo1&quot;,&#13;&#10;        &quot;code101&quot; : &quot;Code1011&quot;,&#13;&#10;        &quot;code106&quot; : &quot;Code1061&quot;,&#13;&#10;        &quot;code107&quot; : &quot;Code1071&quot;,&#13;&#10;        &quot;code110&quot; : &quot;Code1101&quot;,&#13;&#10;        &quot;dueDate&quot; : 1601240400000,&#13;&#10;        &quot;createTime&quot; : 1601244706000,&#13;&#10;        &quot;sourceId&quot; : -9223372036854775808&#13;&#10;      }, {&#13;&#10;        &quot;type&quot; : &quot;Type2&quot;,&#13;&#10;        &quot;documentIndex&quot; : &quot;DocumentIndex2&quot;,&#13;&#10;        &quot;fullName&quot; : &quot;FullName2&quot;,&#13;&#10;        &quot;address&quot; : &quot;Address2&quot;,&#13;&#10;        &quot;inn&quot; : &quot;Inn3&quot;,&#13;&#10;        &quot;amount&quot; : -656.234,&#13;&#10;        &quot;recipientBankName&quot; : &quot;RecipientBankName2&quot;,&#13;&#10;        &quot;recipientBankBik&quot; : &quot;RecipientBankBik2&quot;,&#13;&#10;        &quot;recipientBankAccountNumber&quot; : &quot;RecipientBankAccountNumber2&quot;,&#13;&#10;        &quot;recipient&quot; : &quot;Recipient2&quot;,&#13;&#10;        &quot;recipientAccountNumber&quot; : &quot;RecipientAccountNumber2&quot;,&#13;&#10;        &quot;recipientInn&quot; : &quot;RecipientInn2&quot;,&#13;&#10;        &quot;recipientKpp&quot; : &quot;RecipientKpp2&quot;,&#13;&#10;        &quot;kbk&quot; : &quot;Kbk2&quot;,&#13;&#10;        &quot;oktmo&quot; : &quot;Oktmo2&quot;,&#13;&#10;        &quot;code101&quot; : &quot;Code1012&quot;,&#13;&#10;        &quot;code106&quot; : &quot;Code1062&quot;,&#13;&#10;        &quot;code107&quot; : &quot;Code1072&quot;,&#13;&#10;        &quot;code110&quot; : &quot;Code1102&quot;,&#13;&#10;        &quot;dueDate&quot; : 1601240400000,&#13;&#10;        &quot;createTime&quot; : 1601244706000,&#13;&#10;        &quot;sourceId&quot; : -9223372036854775808&#13;&#10;      }, {&#13;&#10;        &quot;type&quot; : &quot;Type3&quot;,&#13;&#10;        &quot;documentIndex&quot; : &quot;DocumentIndex3&quot;,&#13;&#10;        &quot;fullName&quot; : &quot;FullName3&quot;,&#13;&#10;        &quot;address&quot; : &quot;Address3&quot;,&#13;&#10;        &quot;inn&quot; : &quot;Inn4&quot;,&#13;&#10;        &quot;amount&quot; : -316.897,&#13;&#10;        &quot;recipientBankName&quot; : &quot;RecipientBankName3&quot;,&#13;&#10;        &quot;recipientBankBik&quot; : &quot;RecipientBankBik3&quot;,&#13;&#10;        &quot;recipientBankAccountNumber&quot; : &quot;RecipientBankAccountNumber3&quot;,&#13;&#10;        &quot;recipient&quot; : &quot;Recipient3&quot;,&#13;&#10;        &quot;recipientAccountNumber&quot; : &quot;RecipientAccountNumber3&quot;,&#13;&#10;        &quot;recipientInn&quot; : &quot;RecipientInn3&quot;,&#13;&#10;        &quot;recipientKpp&quot; : &quot;RecipientKpp3&quot;,&#13;&#10;        &quot;kbk&quot; : &quot;Kbk3&quot;,&#13;&#10;        &quot;oktmo&quot; : &quot;Oktmo3&quot;,&#13;&#10;        &quot;code101&quot; : &quot;Code1013&quot;,&#13;&#10;        &quot;code106&quot; : &quot;Code1063&quot;,&#13;&#10;        &quot;code107&quot; : &quot;Code1073&quot;,&#13;&#10;        &quot;code110&quot; : &quot;Code1103&quot;,&#13;&#10;        &quot;dueDate&quot; : 1601240400000,&#13;&#10;        &quot;createTime&quot; : 1601244706000,&#13;&#10;        &quot;sourceId&quot; : -9223372036854775808&#13;&#10;      } ]&#13;&#10;    }, {&#13;&#10;      &quot;inn&quot; : &quot;Inn5&quot;,&#13;&#10;      &quot;documentList&quot; : [ {&#13;&#10;        &quot;type&quot; : &quot;Type4&quot;,&#13;&#10;        &quot;documentIndex&quot; : &quot;DocumentIndex4&quot;,&#13;&#10;        &quot;fullName&quot; : &quot;FullName4&quot;,&#13;&#10;        &quot;address&quot; : &quot;Address4&quot;,&#13;&#10;        &quot;inn&quot; : &quot;Inn6&quot;,&#13;&#10;        &quot;amount&quot; : -784.226,&#13;&#10;        &quot;recipientBankName&quot; : &quot;RecipientBankName4&quot;,&#13;&#10;        &quot;recipientBankBik&quot; : &quot;RecipientBankBik4&quot;,&#13;&#10;        &quot;recipientBankAccountNumber&quot; : &quot;RecipientBankAccountNumber4&quot;,&#13;&#10;        &quot;recipient&quot; : &quot;Recipient4&quot;,&#13;&#10;        &quot;recipientAccountNumber&quot; : &quot;RecipientAccountNumber4&quot;,&#13;&#10;        &quot;recipientInn&quot; : &quot;RecipientInn4&quot;,&#13;&#10;        &quot;recipientKpp&quot; : &quot;RecipientKpp4&quot;,&#13;&#10;        &quot;kbk&quot; : &quot;Kbk4&quot;,&#13;&#10;        &quot;oktmo&quot; : &quot;Oktmo4&quot;,&#13;&#10;        &quot;code101&quot; : &quot;Code1014&quot;,&#13;&#10;        &quot;code106&quot; : &quot;Code1064&quot;,&#13;&#10;        &quot;code107&quot; : &quot;Code1074&quot;,&#13;&#10;        &quot;code110&quot; : &quot;Code1104&quot;,&#13;&#10;        &quot;dueDate&quot; : 1601240400000,&#13;&#10;        &quot;createTime&quot; : 1601244706000,&#13;&#10;        &quot;sourceId&quot; : -9223372036854775808&#13;&#10;      }, {&#13;&#10;        &quot;type&quot; : &quot;Type5&quot;,&#13;&#10;        &quot;documentIndex&quot; : &quot;DocumentIndex5&quot;,&#13;&#10;        &quot;fullName&quot; : &quot;FullName5&quot;,&#13;&#10;        &quot;address&quot; : &quot;Address5&quot;,&#13;&#10;        &quot;inn&quot; : &quot;Inn7&quot;,&#13;&#10;        &quot;amount&quot; : -26.511,&#13;&#10;        &quot;recipientBankName&quot; : &quot;RecipientBankName5&quot;,&#13;&#10;        &quot;recipientBankBik&quot; : &quot;RecipientBankBik5&quot;,&#13;&#10;        &quot;recipientBankAccountNumber&quot; : &quot;RecipientBankAccountNumber5&quot;,&#13;&#10;        &quot;recipient&quot; : &quot;Recipient5&quot;,&#13;&#10;        &quot;recipientAccountNumber&quot; : &quot;RecipientAccountNumber5&quot;,&#13;&#10;        &quot;recipientInn&quot; : &quot;RecipientInn5&quot;,&#13;&#10;        &quot;recipientKpp&quot; : &quot;RecipientKpp5&quot;,&#13;&#10;        &quot;kbk&quot; : &quot;Kbk5&quot;,&#13;&#10;        &quot;oktmo&quot; : &quot;Oktmo5&quot;,&#13;&#10;        &quot;code101&quot; : &quot;Code1015&quot;,&#13;&#10;        &quot;code106&quot; : &quot;Code1065&quot;,&#13;&#10;        &quot;code107&quot; : &quot;Code1075&quot;,&#13;&#10;        &quot;code110&quot; : &quot;Code1105&quot;,&#13;&#10;        &quot;dueDate&quot; : 1601240400000,&#13;&#10;        &quot;createTime&quot; : 1601244706000,&#13;&#10;        &quot;sourceId&quot; : -9223372036854775808&#13;&#10;      }, {&#13;&#10;        &quot;type&quot; : &quot;Type6&quot;,&#13;&#10;        &quot;documentIndex&quot; : &quot;DocumentIndex6&quot;,&#13;&#10;        &quot;fullName&quot; : &quot;FullName6&quot;,&#13;&#10;        &quot;address&quot; : &quot;Address6&quot;,&#13;&#10;        &quot;inn&quot; : &quot;Inn8&quot;,&#13;&#10;        &quot;amount&quot; : -875.775,&#13;&#10;        &quot;recipientBankName&quot; : &quot;RecipientBankName6&quot;,&#13;&#10;        &quot;recipientBankBik&quot; : &quot;RecipientBankBik6&quot;,&#13;&#10;        &quot;recipientBankAccountNumber&quot; : &quot;RecipientBankAccountNumber6&quot;,&#13;&#10;        &quot;recipient&quot; : &quot;Recipient6&quot;,&#13;&#10;        &quot;recipientAccountNumber&quot; : &quot;RecipientAccountNumber6&quot;,&#13;&#10;        &quot;recipientInn&quot; : &quot;RecipientInn6&quot;,&#13;&#10;        &quot;recipientKpp&quot; : &quot;RecipientKpp6&quot;,&#13;&#10;        &quot;kbk&quot; : &quot;Kbk6&quot;,&#13;&#10;        &quot;oktmo&quot; : &quot;Oktmo6&quot;,&#13;&#10;        &quot;code101&quot; : &quot;Code1016&quot;,&#13;&#10;        &quot;code106&quot; : &quot;Code1066&quot;,&#13;&#10;        &quot;code107&quot; : &quot;Code1076&quot;,&#13;&#10;        &quot;code110&quot; : &quot;Code1106&quot;,&#13;&#10;        &quot;dueDate&quot; : 1601240400000,&#13;&#10;        &quot;createTime&quot; : 1601244706000,&#13;&#10;        &quot;sourceId&quot; : -9223372036854775808&#13;&#10;      } ]&#13;&#10;    } ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetLegalEntityInfoRequest"
+                   role="button" aria-expanded="false" aria-controls="GetLegalEntityInfoRequest">
+                    GetLegalEntityInfoRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetLegalEntityInfoRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetLegalEntityInfoRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;b3b7b987-2e1d-4d1f-843c-bed25aee7e63&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetLegalEntityInfoRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;inn&quot; : &quot;Inn1&quot;,&#13;&#10;    &quot;ogrn&quot; : &quot;Ogrn1&quot;,&#13;&#10;    &quot;name&quot; : &quot;Name1&quot;,&#13;&#10;    &quot;oktmo&quot; : &quot;Oktmo1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetLegalEntityInfoRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;7754c4b7-40d1-4356-88ca-ef8b6b60e3bd&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetLegalEntityInfoResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;inn&quot; : &quot;Inn1&quot;,&#13;&#10;    &quot;ogrn&quot; : &quot;Ogrn1&quot;,&#13;&#10;    &quot;name&quot; : &quot;Name1&quot;,&#13;&#10;    &quot;address&quot; : &quot;Address1&quot;,&#13;&#10;    &quot;terminationDate&quot; : 1601244703000,&#13;&#10;    &quot;invalidationDate&quot; : 1601244703000&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetGrantedPermissionsStatusRequest"
+                   role="button" aria-expanded="false" aria-controls="GetGrantedPermissionsStatusRequest">
+                    GetGrantedPermissionsStatusRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetGrantedPermissionsStatusRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetGrantedPermissionsStatusRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;db0735bf-0fe7-4f0e-905f-de7eb00d98bc&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetGrantedPermissionsStatusRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;id&quot; : &quot;Id1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetGrantedPermissionsStatusRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;33d18082-761b-4587-b31f-f839c3ca977c&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetGrantedPermissionsStatusResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;inn&quot; : &quot;Inn1&quot;,&#13;&#10;    &quot;result&quot; : &quot;Result1&quot;,&#13;&#10;    &quot;processingTime&quot; : 1601244704000&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetGrantedPermissionsRequest"
+                   role="button" aria-expanded="false" aria-controls="GetGrantedPermissionsRequest">
+                    GetGrantedPermissionsRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetGrantedPermissionsRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetGrantedPermissionsRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;36b56bfa-b5ae-489f-9e3f-da2b304d87c5&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetGrantedPermissionsRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;inn&quot; : &quot;Inn1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetGrantedPermissionsRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;d9a0900a-207b-450d-a0ca-d41b5c6e5700&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetGrantedPermissionsResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;grantedPermissionsList&quot; : [ &quot;GrantedPermissionsList1&quot;, &quot;GrantedPermissionsList2&quot;, &quot;GrantedPermissionsList3&quot;, &quot;GrantedPermissionsList4&quot; ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#PostRestrictionsRequest"
+                   role="button" aria-expanded="false" aria-controls="PostRestrictionsRequest">
+                    PostRestrictionsRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="PostRestrictionsRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostRestrictionsRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;3ab967d9-db68-4826-90f2-5442ae366a37&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostRestrictionsRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;inn&quot; : &quot;Inn1&quot;,&#13;&#10;    &quot;type&quot; : &quot;Type1&quot;,&#13;&#10;    &quot;message&quot; : &quot;Message1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostRestrictionsRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;f3ad29c9-1e98-4b98-bffb-ec30be1afaf8&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostRestrictionsResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;id&quot; : &quot;Id1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetRegistrationReferenceRequestV2"
+                   role="button" aria-expanded="false" aria-controls="GetRegistrationReferenceRequestV2">
+                    GetRegistrationReferenceRequestV2</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetRegistrationReferenceRequestV2" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetRegistrationReferenceRequestV2">{&#13;&#10;  &quot;externalId&quot; : &quot;96b139fe-11e7-4f10-8fc2-727e77e4cb36&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetRegistrationReferenceRequestV2&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;inn&quot; : &quot;Inn1&quot;,&#13;&#10;    &quot;requestTime&quot; : 1601244704000,&#13;&#10;    &quot;requestYear&quot; : &quot;RequestYear1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetRegistrationReferenceRequestV2Response">{&#13;&#10;  &quot;externalId&quot; : &quot;8afe2c67-6d7d-440a-ac6f-3102759cd09d&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetRegistrationReferenceResponseV2&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;registrationReferencePdf&quot; : {&#13;&#10;      &quot;mimetype&quot; : &quot;mimetype1&quot;,&#13;&#10;      &quot;filename&quot; : &quot;filename1&quot;,&#13;&#10;      &quot;content&quot; : &quot;Y29udGVudDE&#61;&quot;&#13;&#10;    }&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#PostNewActivityRequest"
+                   role="button" aria-expanded="false" aria-controls="PostNewActivityRequest">
+                    PostNewActivityRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="PostNewActivityRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostNewActivityRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;28a88f6e-6a2d-49e6-a00c-1558c2c52f6d&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostNewActivityRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;activity&quot; : &quot;Activity1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostNewActivityRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;919f6a18-c8be-4722-b421-9067e4248e19&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostNewActivityResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;id&quot; : &quot;Id1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#PostRegistrationRequest"
+                   role="button" aria-expanded="false" aria-controls="PostRegistrationRequest">
+                    PostRegistrationRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="PostRegistrationRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostRegistrationRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;f6bc5317-3bab-45db-a4fa-0b56c93b2dae&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostRegistrationRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;inn&quot; : &quot;Inn1&quot;,&#13;&#10;    &quot;firstName&quot; : &quot;FirstName1&quot;,&#13;&#10;    &quot;secondName&quot; : &quot;SecondName1&quot;,&#13;&#10;    &quot;patronymic&quot; : &quot;Patronymic1&quot;,&#13;&#10;    &quot;birthday&quot; : 1601240400000,&#13;&#10;    &quot;passportSeries&quot; : &quot;PassportSeries1&quot;,&#13;&#10;    &quot;passportNumber&quot; : &quot;PassportNumber1&quot;,&#13;&#10;    &quot;activities&quot; : [ &quot;Activities1&quot;, &quot;Activities2&quot;, &quot;Activities3&quot;, &quot;Activities4&quot; ],&#13;&#10;    &quot;phone&quot; : &quot;Phone1&quot;,&#13;&#10;    &quot;email&quot; : &quot;Email1&quot;,&#13;&#10;    &quot;bankcardNumber&quot; : &quot;BankcardNumber1&quot;,&#13;&#10;    &quot;bankcardAccountNumber&quot; : &quot;BankcardAccountNumber1&quot;,&#13;&#10;    &quot;requestTime&quot; : 1601244699000,&#13;&#10;    &quot;oktmo&quot; : &quot;Oktmo1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostRegistrationRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;406c7e05-5d09-47d6-8b2c-d26e2a5ea0b8&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostRegistrationResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;id&quot; : &quot;Id1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetNewlyUnboundTaxpayersRequest"
+                   role="button" aria-expanded="false" aria-controls="GetNewlyUnboundTaxpayersRequest">
+                    GetNewlyUnboundTaxpayersRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetNewlyUnboundTaxpayersRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetNewlyUnboundTaxpayersRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;2aebba8f-f45a-4b7e-a177-a4989bedfb07&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetNewlyUnboundTaxpayersRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;from&quot; : 1601244703000,&#13;&#10;    &quot;to&quot; : 1601244703000,&#13;&#10;    &quot;limit&quot; : 100,&#13;&#10;    &quot;offset&quot; : 0&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetNewlyUnboundTaxpayersRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;5661233c-709d-4cff-879e-1ad20461a386&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetNewlyUnboundTaxpayersResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;taxpayers&quot; : [ {&#13;&#10;      &quot;inn&quot; : &quot;Inn1&quot;,&#13;&#10;      &quot;firstName&quot; : &quot;FirstName1&quot;,&#13;&#10;      &quot;secondName&quot; : &quot;SecondName1&quot;,&#13;&#10;      &quot;patronymic&quot; : &quot;Patronymic1&quot;,&#13;&#10;      &quot;unboundTime&quot; : 1601244703000,&#13;&#10;      &quot;registrationTime&quot; : 1601244703000,&#13;&#10;      &quot;phone&quot; : &quot;Phone1&quot;&#13;&#10;    }, {&#13;&#10;      &quot;inn&quot; : &quot;Inn2&quot;,&#13;&#10;      &quot;firstName&quot; : &quot;FirstName2&quot;,&#13;&#10;      &quot;secondName&quot; : &quot;SecondName2&quot;,&#13;&#10;      &quot;patronymic&quot; : &quot;Patronymic2&quot;,&#13;&#10;      &quot;unboundTime&quot; : 1601244703000,&#13;&#10;      &quot;registrationTime&quot; : 1601244703000,&#13;&#10;      &quot;phone&quot; : &quot;Phone2&quot;&#13;&#10;    } ],&#13;&#10;    &quot;hasMore&quot; : true&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetAccrualsAndDebtsRequest"
+                   role="button" aria-expanded="false" aria-controls="GetAccrualsAndDebtsRequest">
+                    GetAccrualsAndDebtsRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetAccrualsAndDebtsRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetAccrualsAndDebtsRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;65f5c5b7-4b20-46b1-8703-7e66a9a72da7&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetAccrualsAndDebtsRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;innList&quot; : [ &quot;InnList1&quot;, &quot;InnList2&quot;, &quot;InnList3&quot;, &quot;InnList4&quot; ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetAccrualsAndDebtsRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;6bf27f58-90df-42f1-a738-091cf38b4c41&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetAccrualsAndDebtsResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;accrualsAndDebtsList&quot; : [ {&#13;&#10;      &quot;inn&quot; : &quot;Inn1&quot;,&#13;&#10;      &quot;taxChargeList&quot; : [ {&#13;&#10;        &quot;amount&quot; : 197.133,&#13;&#10;        &quot;dueDate&quot; : 1601240400000,&#13;&#10;        &quot;taxPeriodId&quot; : 656448250,&#13;&#10;        &quot;oktmo&quot; : &quot;Oktmo1&quot;,&#13;&#10;        &quot;kbk&quot; : &quot;Kbk1&quot;,&#13;&#10;        &quot;paidAmount&quot; : -85.464,&#13;&#10;        &quot;createTime&quot; : 1601244706000,&#13;&#10;        &quot;id&quot; : -9223372036854775808&#13;&#10;      }, {&#13;&#10;        &quot;amount&quot; : -597.417,&#13;&#10;        &quot;dueDate&quot; : 1601240400000,&#13;&#10;        &quot;taxPeriodId&quot; : 1474620657,&#13;&#10;        &quot;oktmo&quot; : &quot;Oktmo2&quot;,&#13;&#10;        &quot;kbk&quot; : &quot;Kbk2&quot;,&#13;&#10;        &quot;paidAmount&quot; : 197.586,&#13;&#10;        &quot;createTime&quot; : 1601244706000,&#13;&#10;        &quot;id&quot; : -9223372036854775808&#13;&#10;      }, {&#13;&#10;        &quot;amount&quot; : -265.974,&#13;&#10;        &quot;dueDate&quot; : 1601240400000,&#13;&#10;        &quot;taxPeriodId&quot; : 602509401,&#13;&#10;        &quot;oktmo&quot; : &quot;Oktmo3&quot;,&#13;&#10;        &quot;kbk&quot; : &quot;Kbk3&quot;,&#13;&#10;        &quot;paidAmount&quot; : 245.701,&#13;&#10;        &quot;createTime&quot; : 1601244706000,&#13;&#10;        &quot;id&quot; : -9223372036854775808&#13;&#10;      } ],&#13;&#10;      &quot;krsbList&quot; : [ {&#13;&#10;        &quot;debt&quot; : -522.21,&#13;&#10;        &quot;penalty&quot; : -314.198,&#13;&#10;        &quot;overpayment&quot; : 516.545,&#13;&#10;        &quot;oktmo&quot; : &quot;Oktmo4&quot;,&#13;&#10;        &quot;kbk&quot; : &quot;Kbk4&quot;,&#13;&#10;        &quot;taxOrganCode&quot; : &quot;TaxOrganCode1&quot;,&#13;&#10;        &quot;updateTime&quot; : 1601244706000,&#13;&#10;        &quot;id&quot; : -9223372036854775808&#13;&#10;      }, {&#13;&#10;        &quot;debt&quot; : -845.757,&#13;&#10;        &quot;penalty&quot; : -596.276,&#13;&#10;        &quot;overpayment&quot; : -122.3,&#13;&#10;        &quot;oktmo&quot; : &quot;Oktmo5&quot;,&#13;&#10;        &quot;kbk&quot; : &quot;Kbk5&quot;,&#13;&#10;        &quot;taxOrganCode&quot; : &quot;TaxOrganCode2&quot;,&#13;&#10;        &quot;updateTime&quot; : 1601244706000,&#13;&#10;        &quot;id&quot; : -9223372036854775808&#13;&#10;      } ]&#13;&#10;    }, {&#13;&#10;      &quot;inn&quot; : &quot;Inn2&quot;,&#13;&#10;      &quot;taxChargeList&quot; : [ {&#13;&#10;        &quot;amount&quot; : 490.661,&#13;&#10;        &quot;dueDate&quot; : 1601240400000,&#13;&#10;        &quot;taxPeriodId&quot; : 174123730,&#13;&#10;        &quot;oktmo&quot; : &quot;Oktmo6&quot;,&#13;&#10;        &quot;kbk&quot; : &quot;Kbk6&quot;,&#13;&#10;        &quot;paidAmount&quot; : 216.749,&#13;&#10;        &quot;createTime&quot; : 1601244706000,&#13;&#10;        &quot;id&quot; : -9223372036854775808&#13;&#10;      }, {&#13;&#10;        &quot;amount&quot; : -366.506,&#13;&#10;        &quot;dueDate&quot; : 1601240400000,&#13;&#10;        &quot;taxPeriodId&quot; : 1588064314,&#13;&#10;        &quot;oktmo&quot; : &quot;Oktmo7&quot;,&#13;&#10;        &quot;kbk&quot; : &quot;Kbk7&quot;,&#13;&#10;        &quot;paidAmount&quot; : -54.07,&#13;&#10;        &quot;createTime&quot; : 1601244706000,&#13;&#10;        &quot;id&quot; : -9223372036854775808&#13;&#10;      }, {&#13;&#10;        &quot;amount&quot; : 218.851,&#13;&#10;        &quot;dueDate&quot; : 1601240400000,&#13;&#10;        &quot;taxPeriodId&quot; : 1336309185,&#13;&#10;        &quot;oktmo&quot; : &quot;Oktmo8&quot;,&#13;&#10;        &quot;kbk&quot; : &quot;Kbk8&quot;,&#13;&#10;        &quot;paidAmount&quot; : 87.27,&#13;&#10;        &quot;createTime&quot; : 1601244706000,&#13;&#10;        &quot;id&quot; : -9223372036854775808&#13;&#10;      } ],&#13;&#10;      &quot;krsbList&quot; : [ {&#13;&#10;        &quot;debt&quot; : 470.821,&#13;&#10;        &quot;penalty&quot; : 428.564,&#13;&#10;        &quot;overpayment&quot; : -153.224,&#13;&#10;        &quot;oktmo&quot; : &quot;Oktmo9&quot;,&#13;&#10;        &quot;kbk&quot; : &quot;Kbk9&quot;,&#13;&#10;        &quot;taxOrganCode&quot; : &quot;TaxOrganCode3&quot;,&#13;&#10;        &quot;updateTime&quot; : 1601244706000,&#13;&#10;        &quot;id&quot; : -9223372036854775808&#13;&#10;      }, {&#13;&#10;        &quot;debt&quot; : 634.17,&#13;&#10;        &quot;penalty&quot; : -91.305,&#13;&#10;        &quot;overpayment&quot; : -736.265,&#13;&#10;        &quot;oktmo&quot; : &quot;Oktmo10&quot;,&#13;&#10;        &quot;kbk&quot; : &quot;Kbk10&quot;,&#13;&#10;        &quot;taxOrganCode&quot; : &quot;TaxOrganCode4&quot;,&#13;&#10;        &quot;updateTime&quot; : 1601244706000,&#13;&#10;        &quot;id&quot; : -9223372036854775808&#13;&#10;      }, {&#13;&#10;        &quot;debt&quot; : 615.581,&#13;&#10;        &quot;penalty&quot; : -377.466,&#13;&#10;        &quot;overpayment&quot; : 667.357,&#13;&#10;        &quot;oktmo&quot; : &quot;Oktmo11&quot;,&#13;&#10;        &quot;kbk&quot; : &quot;Kbk11&quot;,&#13;&#10;        &quot;taxOrganCode&quot; : &quot;TaxOrganCode5&quot;,&#13;&#10;        &quot;updateTime&quot; : 1601244706000,&#13;&#10;        &quot;id&quot; : -9223372036854775808&#13;&#10;      } ]&#13;&#10;    } ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetPartnersPermissionsRequest"
+                   role="button" aria-expanded="false" aria-controls="GetPartnersPermissionsRequest">
+                    GetPartnersPermissionsRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetPartnersPermissionsRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetPartnersPermissionsRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;0fac7210-2a8f-487b-8e15-428cc93ab7f6&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetPartnersPermissionsRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;inn&quot; : &quot;Inn1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetPartnersPermissionsRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;eaa87295-6b33-4277-b097-0eb018ef0e67&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetPartnersPermissionsResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;partnersPermissionsList&quot; : [ {&#13;&#10;      &quot;partnerId&quot; : &quot;PartnerId1&quot;,&#13;&#10;      &quot;partnerName&quot; : &quot;PartnerName1&quot;,&#13;&#10;      &quot;partnerBindStatus&quot; : &quot;PartnerBindStatus1&quot;,&#13;&#10;      &quot;bindTime&quot; : 1601244705000,&#13;&#10;      &quot;permissionsChangeTime&quot; : 1601244705000,&#13;&#10;      &quot;permissionsList&quot; : [ &quot;PermissionsList1&quot;, &quot;PermissionsList2&quot;, &quot;PermissionsList3&quot; ]&#13;&#10;    }, {&#13;&#10;      &quot;partnerId&quot; : &quot;PartnerId2&quot;,&#13;&#10;      &quot;partnerName&quot; : &quot;PartnerName2&quot;,&#13;&#10;      &quot;partnerBindStatus&quot; : &quot;PartnerBindStatus2&quot;,&#13;&#10;      &quot;bindTime&quot; : 1601244705000,&#13;&#10;      &quot;permissionsChangeTime&quot; : 1601244705000,&#13;&#10;      &quot;permissionsList&quot; : [ &quot;PermissionsList4&quot;, &quot;PermissionsList5&quot;, &quot;PermissionsList6&quot; ]&#13;&#10;    }, {&#13;&#10;      &quot;partnerId&quot; : &quot;PartnerId3&quot;,&#13;&#10;      &quot;partnerName&quot; : &quot;PartnerName3&quot;,&#13;&#10;      &quot;partnerBindStatus&quot; : &quot;PartnerBindStatus3&quot;,&#13;&#10;      &quot;bindTime&quot; : 1601244705000,&#13;&#10;      &quot;permissionsChangeTime&quot; : 1601244705000,&#13;&#10;      &quot;permissionsList&quot; : [ &quot;PermissionsList7&quot;, &quot;PermissionsList8&quot; ]&#13;&#10;    } ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetUnregistrationStatusRequest"
+                   role="button" aria-expanded="false" aria-controls="GetUnregistrationStatusRequest">
+                    GetUnregistrationStatusRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetUnregistrationStatusRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetUnregistrationStatusRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;0c818814-8e0a-4c99-a628-90ee92d9dd2f&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetUnregistrationStatusRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;id&quot; : &quot;Id1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetUnregistrationStatusRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;dc732ccf-c97e-4122-8ba3-e36fa5407a9c&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetUnregistrationStatusResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;requestResult&quot; : &quot;RequestResult1&quot;,&#13;&#10;    &quot;rejectionReason&quot; : &quot;RejectionReason1&quot;,&#13;&#10;    &quot;unregistrationTime&quot; : 1601244700000&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#PostBindPartnerWithInnRequest"
+                   role="button" aria-expanded="false" aria-controls="PostBindPartnerWithInnRequest">
+                    PostBindPartnerWithInnRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="PostBindPartnerWithInnRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostBindPartnerWithInnRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;157b2d1d-e707-41bb-adf0-ec0c3a1a6449&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostBindPartnerWithInnRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;inn&quot; : &quot;Inn1&quot;,&#13;&#10;    &quot;permissions&quot; : [ &quot;Permissions1&quot;, &quot;Permissions2&quot; ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostBindPartnerWithInnRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;d92f0792-550f-49de-b947-761b1ba66a8b&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostBindPartnerWithInnResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;id&quot; : &quot;Id1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#PostIncomeFromIndividualRequest"
+                   role="button" aria-expanded="false" aria-controls="PostIncomeFromIndividualRequest">
+                    PostIncomeFromIndividualRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="PostIncomeFromIndividualRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostIncomeFromIndividualRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;5aca5512-59c7-4b56-8e87-df57804717da&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostIncomeFromIndividualRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;inn&quot; : &quot;Inn1&quot;,&#13;&#10;    &quot;receiptId&quot; : &quot;ReceiptId1&quot;,&#13;&#10;    &quot;requestTime&quot; : 1601244701000,&#13;&#10;    &quot;operationTime&quot; : 1601244701000,&#13;&#10;    &quot;supplierInn&quot; : &quot;SupplierInn1&quot;,&#13;&#10;    &quot;services&quot; : [ {&#13;&#10;      &quot;amount&quot; : 608.802,&#13;&#10;      &quot;name&quot; : &quot;Name1&quot;,&#13;&#10;      &quot;quantity&quot; : -9223372036854775808&#13;&#10;    }, {&#13;&#10;      &quot;amount&quot; : -372.557,&#13;&#10;      &quot;name&quot; : &quot;Name2&quot;,&#13;&#10;      &quot;quantity&quot; : -9223372036854775808&#13;&#10;    }, {&#13;&#10;      &quot;amount&quot; : 899.723,&#13;&#10;      &quot;name&quot; : &quot;Name3&quot;,&#13;&#10;      &quot;quantity&quot; : -9223372036854775808&#13;&#10;    } ],&#13;&#10;    &quot;totalAmount&quot; : 699.489,&#13;&#10;    &quot;incomeHashCode&quot; : &quot;IncomeHashCode1&quot;,&#13;&#10;    &quot;link&quot; : &quot;Link1&quot;,&#13;&#10;    &quot;geoInfo&quot; : {&#13;&#10;      &quot;latitude&quot; : -162.44353284389206,&#13;&#10;      &quot;longitude&quot; : 305.1096153713788&#13;&#10;    },&#13;&#10;    &quot;operationUniqueId&quot; : &quot;OperationUniqueId1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostIncomeFromIndividualRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;eb6a1562-4a92-4dca-bcc0-945cae44c9aa&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostIncomeFromIndividualResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;receiptId&quot; : &quot;ReceiptId1&quot;,&#13;&#10;    &quot;link&quot; : &quot;Link1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#PostDecisionPermissionsChangeRequest"
+                   role="button" aria-expanded="false" aria-controls="PostDecisionPermissionsChangeRequest">
+                    PostDecisionPermissionsChangeRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="PostDecisionPermissionsChangeRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostDecisionPermissionsChangeRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;b4a2a068-78f5-41e7-ac6f-7310e0e4049e&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostDecisionPermissionsChangeRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;requestId&quot; : &quot;requestId1&quot;,&#13;&#10;    &quot;inn&quot; : &quot;inn1&quot;,&#13;&#10;    &quot;status&quot; : &quot;status1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostDecisionPermissionsChangeRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;afcacc76-6f46-4ab9-b3c8-9db521866078&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostDecisionPermissionsChangeResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;status&quot; : &quot;status1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetRegistrationStatusRequest"
+                   role="button" aria-expanded="false" aria-controls="GetRegistrationStatusRequest">
+                    GetRegistrationStatusRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetRegistrationStatusRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetRegistrationStatusRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;d4d52797-3092-4d30-a3f9-349a49738404&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetRegistrationStatusRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;id&quot; : &quot;Id1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetRegistrationStatusRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;3a3d9df2-f8b2-4212-8221-ee806a63b318&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetRegistrationStatusResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;requestResult&quot; : &quot;RequestResult1&quot;,&#13;&#10;    &quot;rejectionReason&quot; : &quot;RejectionReason1&quot;,&#13;&#10;    &quot;registrationTime&quot; : 1601244699000,&#13;&#10;    &quot;lastRegistrationTime&quot; : 1601244699000,&#13;&#10;    &quot;updateTime&quot; : 1601244699000,&#13;&#10;    &quot;unregistrationTime&quot; : 1601244699000,&#13;&#10;    &quot;bindRequestId&quot; : &quot;BindRequestId1&quot;,&#13;&#10;    &quot;registrationCertificateNumber&quot; : &quot;RegistrationCertificateNumber1&quot;,&#13;&#10;    &quot;inn&quot; : &quot;Inn1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetRestrictionsStatusRequest"
+                   role="button" aria-expanded="false" aria-controls="GetRestrictionsStatusRequest">
+                    GetRestrictionsStatusRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetRestrictionsStatusRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetRestrictionsStatusRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;b35afb73-2b4f-405c-b84e-76b58ab9000b&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetRestrictionsStatusRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;id&quot; : &quot;Id1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetRestrictionsStatusRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;dddfd948-b392-4c59-86f4-43c55e53525b&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetRestrictionsStatusResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;requestResult&quot; : &quot;RequestResult1&quot;,&#13;&#10;    &quot;message&quot; : &quot;Message1&quot;,&#13;&#10;    &quot;processingTime&quot; : 1601244702000&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#PostCancelReceiptRequestV2"
+                   role="button" aria-expanded="false" aria-controls="PostCancelReceiptRequestV2">
+                    PostCancelReceiptRequestV2</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="PostCancelReceiptRequestV2" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostCancelReceiptRequestV2">{&#13;&#10;  &quot;externalId&quot; : &quot;3b0bcf7c-2253-474c-8545-51547ab6acc3&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostCancelReceiptRequestV2&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;inn&quot; : &quot;Inn1&quot;,&#13;&#10;    &quot;receiptId&quot; : &quot;ReceiptId1&quot;,&#13;&#10;    &quot;reasonCode&quot; : &quot;ReasonCode1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostCancelReceiptRequestV2Response">{&#13;&#10;  &quot;externalId&quot; : &quot;85dcc61c-c046-42e1-8cdb-08bd4cd13b50&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostCancelReceiptResponseV2&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;requestResult&quot; : &quot;RequestResult1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#PostGrantedPermissionsRequest"
+                   role="button" aria-expanded="false" aria-controls="PostGrantedPermissionsRequest">
+                    PostGrantedPermissionsRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="PostGrantedPermissionsRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostGrantedPermissionsRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;5771d90e-c4f2-4b4a-9d23-bf68e39e2729&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostGrantedPermissionsRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;inn&quot; : &quot;Inn1&quot;,&#13;&#10;    &quot;permissions&quot; : [ &quot;Permissions1&quot;, &quot;Permissions2&quot;, &quot;Permissions3&quot; ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostGrantedPermissionsRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;256e689f-48af-4162-a1ad-fe2c5a2478f3&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostGrantedPermissionsResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;id&quot; : &quot;Id1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetNotificationsCountRequest"
+                   role="button" aria-expanded="false" aria-controls="GetNotificationsCountRequest">
+                    GetNotificationsCountRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetNotificationsCountRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetNotificationsCountRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;5d02d585-1311-4aa2-adff-19a228e9c959&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetNotificationsCountRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;inn&quot; : [ &quot;inn1&quot;, &quot;inn2&quot;, &quot;inn3&quot;, &quot;inn4&quot; ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetNotificationsCountRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;390a8179-277d-4042-842a-0a41b81fc1ba&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetNotificationsCountResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;status&quot; : [ {&#13;&#10;      &quot;inn&quot; : &quot;inn1&quot;,&#13;&#10;      &quot;count&quot; : 1137934940&#13;&#10;    }, {&#13;&#10;      &quot;inn&quot; : &quot;inn2&quot;,&#13;&#10;      &quot;count&quot; : 1727023502&#13;&#10;    } ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#PutTaxpayerDataRequest"
+                   role="button" aria-expanded="false" aria-controls="PutTaxpayerDataRequest">
+                    PutTaxpayerDataRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="PutTaxpayerDataRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePutTaxpayerDataRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;3acabb5e-46a4-4d58-a69f-2943774fa1b6&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PutTaxpayerDataRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;inn&quot; : &quot;Inn1&quot;,&#13;&#10;    &quot;phone&quot; : &quot;Phone1&quot;,&#13;&#10;    &quot;email&quot; : &quot;Email1&quot;,&#13;&#10;    &quot;activities&quot; : [ &quot;Activities1&quot;, &quot;Activities2&quot;, &quot;Activities3&quot; ],&#13;&#10;    &quot;region&quot; : &quot;Region1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePutTaxpayerDataRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;8372de23-c067-4602-a135-56d64fbb8408&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PutTaxpayerDataResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;updateTime&quot; : 1601244700000&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#GetTaxpayerRatingRequest"
+                   role="button" aria-expanded="false" aria-controls="GetTaxpayerRatingRequest">
+                    GetTaxpayerRatingRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="GetTaxpayerRatingRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetTaxpayerRatingRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;438765e0-3d8c-4593-8ff1-c313f94c7292&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetTaxpayerRatingRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;inn&quot; : &quot;Inn1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodeGetTaxpayerRatingRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;37fa4a22-c90f-427c-9ddd-439b05c31384&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;GetTaxpayerRatingResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;rating&quot; : &quot;Rating1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#PostNotificationsAckRequest"
+                   role="button" aria-expanded="false" aria-controls="PostNotificationsAckRequest">
+                    PostNotificationsAckRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="PostNotificationsAckRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostNotificationsAckRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;e69a5707-470a-42ac-834a-11c8ec6edc5b&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostNotificationsAckRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;notificationList&quot; : [ {&#13;&#10;      &quot;inn&quot; : &quot;inn1&quot;,&#13;&#10;      &quot;messageId&quot; : [ &quot;messageId1&quot;, &quot;messageId2&quot;, &quot;messageId3&quot;, &quot;messageId4&quot; ]&#13;&#10;    }, {&#13;&#10;      &quot;inn&quot; : &quot;inn2&quot;,&#13;&#10;      &quot;messageId&quot; : [ &quot;messageId5&quot;, &quot;messageId6&quot;, &quot;messageId7&quot;, &quot;messageId8&quot; ]&#13;&#10;    }, {&#13;&#10;      &quot;inn&quot; : &quot;inn3&quot;,&#13;&#10;      &quot;messageId&quot; : [ &quot;messageId9&quot;, &quot;messageId10&quot;, &quot;messageId11&quot; ]&#13;&#10;    } ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostNotificationsAckRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;9c494629-206f-438c-926b-b427028f300a&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostNotificationsAckResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;status&quot; : &quot;status1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#PostIncomeRequestV2"
+                   role="button" aria-expanded="false" aria-controls="PostIncomeRequestV2">
+                    PostIncomeRequestV2</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="PostIncomeRequestV2" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostIncomeRequestV2">{&#13;&#10;  &quot;externalId&quot; : &quot;270789ff-1fd9-4666-933f-70d0e1e8d187&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostIncomeRequestV2&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;inn&quot; : &quot;Inn1&quot;,&#13;&#10;    &quot;receiptId&quot; : &quot;ReceiptId1&quot;,&#13;&#10;    &quot;requestTime&quot; : 1601244701000,&#13;&#10;    &quot;operationTime&quot; : 1601244701000,&#13;&#10;    &quot;incomeType&quot; : &quot;IncomeType1&quot;,&#13;&#10;    &quot;customerInn&quot; : &quot;CustomerInn1&quot;,&#13;&#10;    &quot;customerOrganization&quot; : &quot;CustomerOrganization1&quot;,&#13;&#10;    &quot;supplierInn&quot; : &quot;SupplierInn1&quot;,&#13;&#10;    &quot;services&quot; : [ {&#13;&#10;      &quot;amount&quot; : -955.586,&#13;&#10;      &quot;name&quot; : &quot;Name1&quot;,&#13;&#10;      &quot;quantity&quot; : -9223372036854775808&#13;&#10;    }, {&#13;&#10;      &quot;amount&quot; : 560.384,&#13;&#10;      &quot;name&quot; : &quot;Name2&quot;,&#13;&#10;      &quot;quantity&quot; : -9223372036854775808&#13;&#10;    }, {&#13;&#10;      &quot;amount&quot; : 381.8,&#13;&#10;      &quot;name&quot; : &quot;Name3&quot;,&#13;&#10;      &quot;quantity&quot; : -9223372036854775808&#13;&#10;    } ],&#13;&#10;    &quot;totalAmount&quot; : 581.847,&#13;&#10;    &quot;incomeHashCode&quot; : &quot;IncomeHashCode1&quot;,&#13;&#10;    &quot;link&quot; : &quot;Link1&quot;,&#13;&#10;    &quot;geoInfo&quot; : {&#13;&#10;      &quot;latitude&quot; : 800.9562706290278,&#13;&#10;      &quot;longitude&quot; : -48.452196864512416&#13;&#10;    },&#13;&#10;    &quot;operationUniqueId&quot; : &quot;OperationUniqueId1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostIncomeRequestV2Response">{&#13;&#10;  &quot;externalId&quot; : &quot;41136147-4d4b-4794-9d42-ca3c0eb241cb&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostIncomeResponseV2&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;receiptId&quot; : &quot;ReceiptId1&quot;,&#13;&#10;    &quot;link&quot; : &quot;Link1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+    <tbody class="row">
+    <tr class="row">
+        <div class="navbar navbar-light" style="background-color: #d6dae0;">
+            <h3>
+                <a class="collapsed" data-toggle="collapse" href="#PostNotificationsAckAllRequest"
+                   role="button" aria-expanded="false" aria-controls="PostNotificationsAckAllRequest">
+                    PostNotificationsAckAllRequest</a>
+            </h3>
+        </div>
+    </tr>
+    <tr class="row">
+        <div id="PostNotificationsAckAllRequest" class="content collapse">
+            <div class="card">
+                <h5 class="border-0">Request</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostNotificationsAckAllRequest">{&#13;&#10;  &quot;externalId&quot; : &quot;3b002452-2e73-4b3b-a8f8-9e3e88280bde&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostNotificationsAckAllRequest&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;inn&quot; : [ &quot;inn1&quot;, &quot;inn2&quot;, &quot;inn3&quot; ]&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="border-0">Response</h5>
+                <div class="signature-container">
+                    <div class="snippet" style="display: block;">
+                        <div class="card-body">
+                            <pre style="background-color: #c1c1c1;"><code class="pre-scrollable"
+                                                                          id="CodePostNotificationsAckAllRequestResponse">{&#13;&#10;  &quot;externalId&quot; : &quot;fc145776-1f74-440e-93dc-02c33ba486da&quot;,&#13;&#10;  &quot;expire&quot; : 0,&#13;&#10;  &quot;request&quot; : &quot;PostNotificationsAckAllResponse&quot;,&#13;&#10;  &quot;responseQueue&quot; : &quot;smz.bind&quot;,&#13;&#10;  &quot;payload&quot; : {&#13;&#10;    &quot;status&quot; : &quot;status1&quot;&#13;&#10;  }&#13;&#10;}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+</body>
+</html>
+
