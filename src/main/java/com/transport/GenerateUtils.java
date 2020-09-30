@@ -22,13 +22,17 @@ import java.util.UUID;
 
 public class GenerateUtils {
     private String smzFolder;
+    private String packageName;
+    private String mqQueue;
 
     public GenerateUtils() {
 
     }
 
-    public GenerateUtils(String smzFolder) {
+    public GenerateUtils(String smzFolder, String packageName, String mqQueue) {
         this.smzFolder = smzFolder;
+        this.packageName = packageName;
+        this.mqQueue = mqQueue;
     }
 
     public String setPayload(Object instanceObject) throws JsonProcessingException {
@@ -56,8 +60,7 @@ public class GenerateUtils {
 
     public Object findInstance(String typeClass) throws InstantiationException, IllegalAccessException, ClassNotFoundException, MalformedURLException {
         URLClassLoader classLoader = new URLClassLoader(new URL[]{(new File(smzFolder).toURI().toURL())});
-//        System.out.println(classLoader.loadClass("smz.partners."+ typeClass).getProtectionDomain().getCodeSource().getLocation().getPath());
-        return classLoader.loadClass("smz.partners."+ typeClass).newInstance();
+        return classLoader.loadClass(packageName + "."+ typeClass).newInstance();
     }
 
     public String getStringJson(JsonNode node) throws JsonProcessingException {
@@ -77,7 +80,7 @@ public class GenerateUtils {
         request.setExternalId(UUID.randomUUID().toString());
         request.setPayload(payload);
         request.setRequest(methodsName);
-        request.setResponseQueue("smz.bind");
+        request.setResponseQueue(mqQueue);
         return request;
     }
 }

@@ -30,7 +30,7 @@ import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Mojo(name = "GenerateDoc", defaultPhase = LifecyclePhase.PACKAGE)
+@Mojo(name = "GenerateDoc", defaultPhase = LifecyclePhase.COMPILE)
 public class GenerateDocMojo extends AbstractMojo {
     @Parameter(required = true)
     private String xsdPath;
@@ -38,24 +38,21 @@ public class GenerateDocMojo extends AbstractMojo {
     private String smzFolder;
     @Parameter(required = true)
     private String resourceFolder;
-
-    public static void main(String[] args) throws IOException {
-        GenerateDocMojo doc = new GenerateDocMojo();
-        doc.xsdPath = "D:/JavaProjects/develop/fns/fns/src/main/resources/files/smz-partners-merged-scheme.xsd";
-        doc.resourceFolder = "D:/JavaProjects/develop/fns/soap-doc-generator/src/main/resources";
-        doc.smzFolder = "D:/JavaProjects/develop/fns/fns/target/classes";
-        doc.generate();
-    }
+    @Parameter(required = true)
+    private String packageName;
+    @Parameter(required = true)
+    private String mqQueue;
 
     public void generate() throws IOException {
         System.out.println("Plugin work");
         System.out.println("xsdPath: " + xsdPath);
         System.out.println("indexHtml: " + resourceFolder);
         System.out.println("smzFolder: " + smzFolder);
+        System.out.println("packageName: " + smzFolder);
+        System.out.println("mqQueue: " + mqQueue);
         List<String> items = new ArrayList<>();
         Map<Integer, String> rows = new HashMap<>();
         Map<Request, Request> temps = new HashMap<>();
-        List<Result> results = new ArrayList<>();
         try {
             DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
@@ -84,11 +81,7 @@ public class GenerateDocMojo extends AbstractMojo {
             System.err.println("Methods not found!");
         } else {
             List<String> collect = items.stream().filter(methods -> {
-                if (methods.contains("Request") || methods.contains("Response")) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return methods.contains("Request") || methods.contains("Response");
             }).collect(Collectors.toList());
 
             collect.remove("RequestResult");
@@ -111,7 +104,7 @@ public class GenerateDocMojo extends AbstractMojo {
                 }
             }
             System.out.println("Count pair: " + counter);
-            GenerateUtils mapper = new GenerateUtils(smzFolder);
+            GenerateUtils mapper = new GenerateUtils(smzFolder, packageName, mqQueue);
             rows.forEach((index, str) -> {
                 String[] strings = str.split(" ");
                 try {
@@ -130,7 +123,6 @@ public class GenerateDocMojo extends AbstractMojo {
             context.put("entrySet", entrySet);
             MustacheFactory mf = new DefaultMustacheFactory();
             Mustache mustache = mf.compile("todo.mustache");
-//        mustache.execute(new PrintWriter(System.out), test).flush();
 
             StringWriter writer = new StringWriter();
             mustache.execute(writer, context).flush();
